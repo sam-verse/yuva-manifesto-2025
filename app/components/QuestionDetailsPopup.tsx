@@ -8,19 +8,19 @@ import Image from "next/image"
 // Custom scrollbar styles for better visibility
 const scrollbarStyles = `
   .custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px; /* Slightly thinner scrollbar */
+    height: 6px;
   }
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 4px;
+    background: #f0f0f0; /* Lighter track */
+    border-radius: 3px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 4px;
+    background: #c0c0c0; /* Softer thumb */
+    border-radius: 3px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: #909090; /* Gentle hover */
   }
 `
 
@@ -35,6 +35,7 @@ interface QuestionDetailsPopupProps {
   details: string
   images?: string[]
   icon?: React.ComponentType<{ className?: string }>
+  statsColorClass: string;
 }
 
 export default function QuestionDetailsPopup({
@@ -48,9 +49,12 @@ export default function QuestionDetailsPopup({
   details,
   images = [],
   icon,
+  statsColorClass,
 }: QuestionDetailsPopupProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  console.log("Stats prop in QuestionDetailsPopup:", stats);
 
   if (!isOpen) return null
 
@@ -59,11 +63,18 @@ export default function QuestionDetailsPopup({
   const bgGradient = gradientColors.join(' ');
   const bgColor = gradientColors[0].replace('from-', 'bg-').split('-')[0];
   
+  // Set scrollbar colors based on theme
+  React.useEffect(() => {
+    document.documentElement.style.setProperty('--scrollbar-track', `#f0f0f0`);
+    document.documentElement.style.setProperty('--scrollbar-thumb', `#c0c0c0`);
+    document.documentElement.style.setProperty('--scrollbar-thumb-hover', `#909090`);
+  }, []);
+
   // Determine text color based on gradient
   const isDarkGradient = gradient.includes('gray-') || gradient.includes('blue-') || gradient.includes('indigo-') || gradient.includes('purple-');
-  const textColor = isDarkGradient ? 'text-white' : 'text-gray-900';
-  const borderColor = isDarkGradient ? 'border-white/20' : 'border-gray-200';
-  const iconBgColor = isDarkGradient ? 'bg-white/20' : 'bg-white/80';
+  const textColor = isDarkGradient ? 'text-gray-900' : 'text-gray-900'; // Keep text dark for professionalism
+  const borderColor = isDarkGradient ? 'border-gray-200' : 'border-gray-200'; // Consistent border
+  const iconBgColor = isDarkGradient ? 'bg-gray-100' : 'bg-gray-100'; // Consistent light icon background
   
   const handleImageClick = (img: string, index: number) => {
     setSelectedImage(img);
@@ -95,18 +106,17 @@ export default function QuestionDetailsPopup({
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 bg-black/95 backdrop-blur-3xl z-50 flex items-center justify-center"
+            className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
           >
+            {/* Subtle radial gradient animation */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-blue-600/40 via-purple-600/40 to-pink-600/40"
+              className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_70%)]"
               animate={{
-                opacity: [0.4, 0.7, 0.4],
-                scale: [1, 1.1, 1],
-                rotate: [0, 1, 0],
+                scale: [1, 1.05, 1],
               }}
               transition={{
                 duration: 8,
@@ -114,218 +124,114 @@ export default function QuestionDetailsPopup({
                 ease: "easeInOut",
               }}
             />
-            <motion.div
-              className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-black/30 to-black/60"
-              animate={{
-                opacity: [0.3, 0.5, 0.3],
-                scale: [1, 1.05, 1],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            />
-            <motion.div
-              className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,_var(--tw-gradient-stops))] from-transparent via-white/5 to-transparent"
-              animate={{
-                rotate: [0, 360],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-              }}
-            />
           </motion.div>
 
           {/* Modal */}
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-1 sm:p-2 md:p-4">
             <motion.div
-              className="bg-white/95 backdrop-blur-3xl rounded-2xl shadow-2xl w-full max-w-[95vw] sm:max-w-[85vw] md:max-w-[75vw] lg:max-w-2xl max-h-[85vh] flex flex-col overflow-hidden border border-white/20"
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="bg-white/95 backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-xl w-[85%] sm:w-[90%] md:w-full max-w-sm sm:max-w-md md:max-w-lg max-h-[94vh] sm:max-h-[95vh] flex flex-col overflow-hidden border border-gray-200"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className={`relative ${bgGradient} p-4 sm:p-5 ${textColor} border-b ${borderColor} overflow-hidden`}>
+              <div className={`relative ${bgGradient} p-8 sm:p-9 md:p-10 text-white border-b border-gray-300 overflow-hidden rounded-t-xl sm:rounded-t-2xl`}>
+                {/* Subtle header background animation */}
                 <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br from-${bgColor}-200/40 via-${bgColor}-100/20 to-transparent`}
+                  className={`absolute inset-0 bg-gradient-to-br from-${bgColor}-500/20 to-transparent`}
                   animate={{
-                    opacity: [0.2, 0.4, 0.2],
-                    scale: [1, 1.1, 1],
+                    opacity: [0.5, 0.8, 0.5],
                   }}
                   transition={{
-                    duration: 4,
+                    duration: 6,
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "easeInOut",
                   }}
                 />
-                <motion.div
-                  className={`absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,_var(--tw-gradient-stops))] from-transparent via-${bgColor}-200/30 to-transparent`}
-                  animate={{
-                    rotate: [0, 360],
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "linear",
-                  }}
-                />
-                <div className="relative flex flex-col space-y-3">
-                  <div className="flex justify-between items-start gap-3">
+                <div className="relative flex flex-col space-y-5 sm:space-y-6">
+                  {/* Title and Close Button */}
+                  <div className="flex justify-between items-center gap-4 sm:gap-6">
                     <div className="flex-1 min-w-0">
-                      <motion.h2 
-                        className="text-lg sm:text-xl font-bold leading-tight drop-shadow-lg pr-2 break-words bg-gradient-to-r from-gray-900 to-gray-800 bg-clip-text text-transparent"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
+                      <h2 
+                        className={`text-base sm:text-lg md:text-xl font-bold leading-tight pr-2 break-words text-white`}
                       >
                         {title}
-                      </motion.h2>
+                      </h2>
                     </div>
                     <motion.button
                       onClick={onClose}
-                      className={`p-2 -m-2 ${isDarkGradient ? 'text-white/90 hover:text-white' : 'text-gray-700 hover:text-gray-900'} transition-all ${isDarkGradient ? 'bg-white/10 hover:bg-white/20' : 'bg-black/5 hover:bg-black/10'} rounded-xl backdrop-blur-sm touch-manipulation`}
-                      whileHover={{ scale: 1.1, rotate: 90 }}
-                      whileTap={{ scale: 0.9 }}
+                      className={`p-3.5 text-white hover:text-white transition-colors bg-white/40 hover:bg-white/60 active:bg-white/70 rounded-full backdrop-blur-lg border border-white/50 shadow-sm`}
+                      whileHover={{ scale: 1.05, rotate: 45 }}
+                      whileTap={{ scale: 0.95 }}
                       aria-label="Close"
                     >
-                      <X size={18} className="w-4.5 h-4.5" />
+                      <X size={10} />
                     </motion.button>
                   </div>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <motion.span 
-                      className={`${isDarkGradient ? 'bg-black/20' : 'bg-black/10'} backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium ${isDarkGradient ? 'border border-white/20' : 'border-black/10'} flex items-center shadow-md`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {stats}
-                    </motion.span>
-                    {icon && (
-                      <motion.div 
-                        className={`${iconBgColor} w-7 h-7 rounded-xl flex items-center justify-center shadow-md backdrop-blur-md`}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        {React.createElement(icon, { className: `w-3.5 h-3.5 ${textColor}` })}
-                      </motion.div>
-                    )}
-                    <motion.span 
-                      className="text-lg sm:text-xl drop-shadow-md ml-auto"
-                      animate={{ 
-                        y: [0, -3, 0],
-                        rotate: [0, 2, 0],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "easeInOut"
-                      }}
-                    >
+
+                  {/* Stats and Emoji Row */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className={`${statsColorClass} text-[10px] sm:text-xs font-bold px-2 sm:px-4 py-1 sm:py-2 rounded-full border shadow-md`}>
+                        <span className="text-white">
+                          {stats}
+                        </span>
+                      </div>
+                      {icon && (
+                        <div className={`${statsColorClass} w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center border shadow-md`}>
+                          {React.createElement(icon, { className: "w-2.5 h-2.5 sm:w-3 sm:h-3 text-white" })}
+                        </div>
+                      )}
+                    </div>
+                    <span className="text-xl sm:text-2xl md:text-3xl">
                       {emoji}
-                    </motion.span>
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-5 space-y-4 sm:space-y-5 bg-gradient-to-b from-white/95 to-white/90">
+              <div className="flex-1 overflow-y-auto custom-scrollbar p-2.5 sm:p-3 md:p-4 space-y-2.5 sm:space-y-3 md:space-y-4 bg-white/90 rounded-b-xl sm:rounded-b-2xl">
                 {/* Summary */}
                 <motion.div 
-                  className={`bg-gradient-to-br from-${bgColor}-50/80 to-white/90 rounded-xl p-4 border border-${bgColor}-100/50 shadow-md backdrop-blur-sm relative overflow-hidden`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
+                  className={`bg-white rounded-lg p-2.5 sm:p-3 md:p-4 border border-gray-200 shadow-sm relative overflow-hidden`}
+                  whileHover={{ y: -2, boxShadow: '0 8px 16px rgba(0,0,0,0.1)' }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
-                  <motion.div
-                    className={`absolute inset-0 bg-gradient-to-br from-${bgColor}-200/30 to-transparent`}
-                    animate={{
-                      opacity: [0.2, 0.3, 0.2],
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut",
-                    }}
-                  />
-                  <motion.div
-                    className={`absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,_var(--tw-gradient-stops))] from-transparent via-${bgColor}-200/20 to-transparent`}
-                    animate={{
-                      rotate: [0, 360],
-                    }}
-                    transition={{
-                      duration: 20,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "linear",
-                    }}
-                  />
-                  <div className="relative flex items-center mb-3">
-                    <motion.div 
-                      className={`w-1.5 h-5 rounded-full bg-gradient-to-b from-${bgColor}-500 to-${bgColor}-400 mr-2.5 flex-shrink-0`}
-                      animate={{ height: [20, 24, 20] }}
-                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                  <div className="relative flex items-center mb-2 sm:mb-2.5">
+                    <div 
+                      className={`w-1 h-3 rounded-full ${bgGradient.split(' ')[0].replace('from-', 'bg-')} mr-1.5 flex-shrink-0`}
                     />
-                    <h3 className={`text-sm font-semibold text-${bgColor}-800`}>Summary</h3>
+                    <h3 className={`text-xs sm:text-sm font-semibold text-gray-800`}>Summary</h3>
                   </div>
-                  <div className={`prose prose-sm max-w-none text-${bgColor}-900/90 pl-3.5`}>
-                    <p className="leading-relaxed text-sm">{content}</p>
+                  <div className={`max-w-none pl-2.5`}>
+                    <p className={`leading-relaxed text-xs sm:text-sm text-gray-700`}>{content}</p>
                   </div>
                 </motion.div>
 
                 {/* Detailed Content */}
                 <motion.div 
-                  className={`bg-gradient-to-br from-${bgColor}-50/60 to-white/90 backdrop-blur-sm rounded-xl p-4 border border-${bgColor}-100/50 shadow-md relative overflow-hidden`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
+                  className={`bg-white rounded-lg p-2.5 sm:p-3 md:p-4 border border-gray-200 shadow-sm relative overflow-hidden`}
+                  whileHover={{ y: -2, boxShadow: '0 8px 16px rgba(0,0,0,0.1)' }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
-                  <motion.div
-                    className={`absolute inset-0 bg-gradient-to-br from-${bgColor}-200/30 to-transparent`}
-                    animate={{
-                      opacity: [0.2, 0.3, 0.2],
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut",
-                    }}
-                  />
-                  <motion.div
-                    className={`absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,_var(--tw-gradient-stops))] from-transparent via-${bgColor}-200/20 to-transparent`}
-                    animate={{
-                      rotate: [0, 360],
-                    }}
-                    transition={{
-                      duration: 20,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "linear",
-                    }}
-                  />
-                  <div className="relative flex items-center mb-3">
-                    <motion.div 
-                      className={`w-1.5 h-5 rounded-full bg-gradient-to-b from-${bgColor}-500 to-${bgColor}-400 mr-2.5 flex-shrink-0`}
-                      animate={{ height: [20, 24, 20] }}
-                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                  <div className="relative flex items-center mb-2 sm:mb-2.5">
+                    <div 
+                      className={`w-1 h-3 rounded-full ${bgGradient.split(' ')[0].replace('from-', 'bg-')} mr-1.5 flex-shrink-0`}
                     />
-                    <h3 className={`text-sm font-semibold text-${bgColor}-800`}>Detailed Insights</h3>
+                    <h3 className={`text-xs sm:text-sm font-semibold text-gray-800`}>Detailed Insights</h3>
                   </div>
-                  <div className={`prose prose-sm max-w-none text-${bgColor}-900/90 pl-3.5`}>
-                    <div className="space-y-3">
+                  <div className={`max-w-none pl-2.5`}>
+                    <div className="space-y-1.5 sm:space-y-2">
                       {(details || content).split('\n\n').map((paragraph, i) => (
-                        <motion.p 
+                        <p 
                           key={i} 
-                          className="leading-relaxed text-sm"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.4 + i * 0.1 }}
+                          className={`leading-relaxed text-xs sm:text-sm text-gray-700`}
                         >
                           {paragraph}
-                        </motion.p>
+                        </p>
                       ))}
                     </div>
                   </div>
@@ -335,27 +241,28 @@ export default function QuestionDetailsPopup({
                 <AnimatePresence>
                   {selectedImage && (
                     <motion.div
-                      className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-3xl flex items-center justify-center"
+                      className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-md flex items-center justify-center"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       onClick={handleClosePreview}
                     >
                       <motion.div
-                        className="relative w-full h-full flex items-center justify-center p-4"
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.9, opacity: 0 }}
+                        className="relative w-full h-full flex items-center justify-center p-1.5 sm:p-2 md:p-4"
+                        initial={{ scale: 0.95 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0.95 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
                         onClick={(e) => e.stopPropagation()}
                       >
                         {/* Close Button */}
                         <motion.button
                           onClick={handleClosePreview}
-                          className="absolute top-4 right-4 p-2 text-white/90 hover:text-white bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all z-50"
-                          whileHover={{ scale: 1.1, rotate: 90 }}
+                          className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 p-1.5 text-red/90 hover:text-white active:text-white bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-lg backdrop-blur-sm transition-colors z-50 touch-manipulation"
+                          whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                         >
-                          <X size={24} />
+                          <X size={16} />
                         </motion.button>
 
                         {/* Navigation Buttons */}
@@ -363,25 +270,25 @@ export default function QuestionDetailsPopup({
                           <>
                             <motion.button
                               onClick={handlePrevImage}
-                              className="absolute left-4 p-2 text-white/90 hover:text-white bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all z-50"
+                              className="absolute left-1.5 sm:left-2 p-1.5 text-white/90 hover:text-white active:text-white bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-lg backdrop-blur-sm transition-colors z-50 touch-manipulation"
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
                             >
-                              <ChevronLeft size={24} />
+                              <ChevronLeft size={16} />
                             </motion.button>
                             <motion.button
                               onClick={handleNextImage}
-                              className="absolute right-4 p-2 text-white/90 hover:text-white bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all z-50"
+                              className="absolute right-1.5 sm:right-2 p-1.5 text-white/90 hover:text-white active:text-white bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-lg backdrop-blur-sm transition-colors z-50 touch-manipulation"
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
                             >
-                              <ChevronRight size={24} />
+                              <ChevronRight size={16} />
                             </motion.button>
                           </>
                         )}
 
                         {/* Image */}
-                        <div className="relative w-full max-w-5xl h-[80vh] rounded-xl overflow-hidden">
+                        <div className="relative w-full max-w-[95%] sm:max-w-2xl h-[50vh] sm:h-[60vh] rounded-lg overflow-hidden border border-gray-300">
                           <Image
                             src={selectedImage}
                             alt={`${title} ${currentImageIndex + 1}`}
@@ -392,7 +299,7 @@ export default function QuestionDetailsPopup({
                         </div>
 
                         {/* Image Counter */}
-                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm z-50">
+                        <div className="absolute bottom-1.5 sm:bottom-2 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded-full text-white text-[10px] sm:text-xs z-50">
                           {currentImageIndex + 1} / {images.length}
                         </div>
                       </motion.div>
@@ -402,111 +309,55 @@ export default function QuestionDetailsPopup({
 
                 {/* Gallery */}
                 {images && images.length > 0 && (
-                  <motion.div 
-                    className="space-y-4"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                  >
+                  <div className="space-y-2.5 sm:space-y-3">
                     <div className="flex items-center">
-                      <motion.div 
-                        className={`w-1.5 h-5 rounded-full bg-gradient-to-b from-${bgColor}-500 to-${bgColor}-400 mr-2.5 flex-shrink-0`}
-                        animate={{ height: [20, 24, 20] }}
-                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                      <div 
+                        className={`w-1 h-3 rounded-full ${bgGradient.split(' ')[0].replace('from-', 'bg-')} mr-1.5 flex-shrink-0`}
                       />
-                      <h3 className={`text-sm font-semibold text-${bgColor}-800`}>Gallery</h3>
+                      <h3 className={`text-xs sm:text-sm font-semibold text-gray-800`}>Gallery</h3>
                     </div>
-                    <div className="grid grid-cols-1 xs:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-3">
                       {images.map((img, i) => (
                         <motion.div 
                           key={i} 
-                          className={`relative aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-${bgColor}-50/80 to-white/90 group border border-${bgColor}-100/50 shadow-md cursor-pointer`}
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.6 + i * 0.1 }}
-                          whileHover={{ 
-                            scale: 1.02, 
-                            boxShadow: `0 15px 30px -10px ${isDarkGradient ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)'}`,
-                            transition: { type: 'spring', stiffness: 300, damping: 20 }
-                          }}
-                          whileTap={{ scale: 0.98 }}
+                          className={`relative aspect-[3/2] rounded-lg overflow-hidden bg-white group border border-gray-200 shadow-sm cursor-pointer transition-transform duration-200 hover:scale-[1.01] hover:shadow-md active:scale-[0.99] touch-manipulation`}
                           onClick={() => handleImageClick(img, i)}
+                          whileHover={{ scale: 1.03, boxShadow: '0 8px 16px rgba(0,0,0,0.1)' }}
+                          whileTap={{ scale: 0.98 }}
                         >
                           <Image
                             src={img}
                             alt={`${title} ${i + 1}`}
                             fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                            sizes="(max-width: 480px) 100vw, (max-width: 640px) 50vw, 25vw"
+                            className="object-cover transition-transform duration-200 group-hover:scale-[1.05]"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             priority={i < 2}
                           />
-                          <div className={`absolute inset-0 bg-gradient-to-t from-${bgColor}-900/60 via-${bgColor}-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-3`}>
-                            <span className={`text-white text-xs font-medium bg-gradient-to-r ${gradient} backdrop-blur-md px-3 py-1.5 rounded-full shadow-md`}>
+                          <div className={`absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-1.5 sm:p-2`}>
+                            <span className={`text-white text-[10px] sm:text-xs font-medium bg-black/50 px-1.5 sm:px-2 py-0.5 rounded-full shadow-sm`}>
                               Image {i + 1}
                             </span>
                           </div>
                         </motion.div>
                       ))}
                     </div>
-                  </motion.div>
+                  </div>
                 )}
               </div>
 
               {/* Footer */}
-              <div className={`border-t ${borderColor} p-4 bg-${bgColor}-50/50 backdrop-blur-sm relative overflow-hidden`}>
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br from-${bgColor}-200/30 to-transparent`}
-                  animate={{
-                    opacity: [0.2, 0.3, 0.2],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
-                />
-                <motion.div
-                  className={`absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,_var(--tw-gradient-stops))] from-transparent via-${bgColor}-200/20 to-transparent`}
-                  animate={{
-                    rotate: [0, 360],
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "linear",
-                  }}
-                />
+              <div className={`border-t border-gray-200 p-2.5 sm:p-3 md:p-4 bg-gray-50 overflow-hidden rounded-b-xl sm:rounded-b-2xl`}>
                 <div className="relative flex justify-end">
                   <motion.button
                     onClick={onClose}
-                    className={`px-5 py-2 bg-gradient-to-r ${gradient} text-white text-sm font-medium rounded-xl hover:opacity-90 transition-all shadow-md hover:shadow-lg flex items-center group touch-manipulation relative overflow-hidden`}
-                    whileHover={{ 
-                      scale: 1.05, 
-                      boxShadow: `0 8px 20px -4px ${isDarkGradient ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.2)'}`,
-                      transition: { type: 'spring', stiffness: 300, damping: 20 }
-                    }}
-                    whileTap={{ scale: 0.95 }}
+                    className={`px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-gray-800 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-gray-700 active:bg-gray-600 transition-colors shadow-md flex items-center group relative overflow-hidden touch-manipulation`}
+                    whileHover={{ scale: 1.01, boxShadow: '0 6px 12px rgba(0,0,0,0.15)' }}
+                    whileTap={{ scale: 0.99 }}
                   >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0"
-                      animate={{
-                        x: ['-100%', '100%'],
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "linear",
-                      }}
-                    />
-                    <span>Close</span>
-                    <motion.span
-                      className="ml-2"
-                      animate={{ x: [0, 3, 0] }}
-                      transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-                    >
-                      <X size={16} className="w-4 h-4" />
-                    </motion.span>
+                    <span>Close Details</span>
+                    <span className="ml-1.5">
+                      <X size={14} className="w-3.5 h-3.5" />
+                    </span>
                   </motion.button>
                 </div>
               </div>

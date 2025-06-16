@@ -73,7 +73,13 @@ const DynamicBackground = () => {
 }
 
 // Enhanced Card Component
-const EnhancedCard = ({ children, className = "", delay = 0, ...props }) => (
+interface EnhancedCardProps {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  [key: string]: any;
+}
+const EnhancedCard: React.FC<EnhancedCardProps> = ({ children, className = "", delay = 0, ...props }) => (
   <motion.div
     initial={{ opacity: 0, y: 50, scale: 0.95 }}
     whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -430,7 +436,7 @@ export default function Page() {
             title={selectedQuestion.title}
             content={selectedQuestion.content}
             details={selectedQuestion.details || selectedQuestion.content}
-            stats={selectedQuestion.stats}
+            stats={selectedQuestion.statsText}
             gradient={selectedQuestion.gradient}
             emoji={selectedQuestion.emoji}
             images={selectedQuestion.images}
@@ -641,7 +647,7 @@ export default function Page() {
           }}
           transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
         >
-          <Star size={32} />
+          {/* <Star size={32} /> */}
         </motion.div>
         <motion.div
           className="absolute bottom-20 right-4 sm:right-10 text-purple-400/60"
@@ -651,7 +657,7 @@ export default function Page() {
           }}
           transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY }}
         >
-          <Target size={40} />
+          {/* <Target size={40} /> */}
         </motion.div>
         <motion.div
           className="absolute top-1/2 left-4 text-green-400/40"
@@ -661,7 +667,7 @@ export default function Page() {
           }}
           transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY }}
         >
-          <Zap size={28} />
+          {/* <Zap size={28} /> */}
         </motion.div>
       </section>
 
@@ -774,7 +780,7 @@ export default function Page() {
 
       {/* Experience Section */}
       {/* Experience Section - Modern Creative Layout */}
-      <section id="experience" className="py-16 sm:py-24 relative z-10 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+      <section id="experience" className="py-16 sm:py-24 relative z-10 overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-blue-50/80 to-transparent -z-10"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-t from-purple-50/80 to-transparent -z-10"></div>
@@ -801,18 +807,33 @@ export default function Page() {
 
           <div className="relative max-w-6xl mx-auto">
             {/* Decorative Timeline Curve */}
-            <svg className="hidden lg:block absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full" viewBox="0 0 20 100" preserveAspectRatio="none">
-              <path 
+            <svg className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full" viewBox="0 0 20 100" preserveAspectRatio="none">
+              <motion.path 
                 d="M10,0 C15,20 5,40 10,60 C15,80 5,100 10,100" 
                 stroke="url(#timeline-gradient)" 
-                strokeWidth="0.5" 
+                strokeWidth="5" 
                 fill="none"
+                initial={{ pathLength: 0, opacity: 0, filter: 'drop-shadow(0 0 18px rgba(99, 102, 241, 1))', }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: true, margin: "-50px 0px" }}
+                animate={{
+                  filter: [
+                    'drop-shadow(0 0 18px rgba(99, 102, 241, 1))',
+                    'drop-shadow(0 0 35px rgba(168, 85, 247, 1))',
+                    'drop-shadow(0 0 18px rgba(99, 102, 241, 1))'
+                  ]
+                }}
+                transition={{
+                  pathLength: { duration: 1.5, ease: "easeInOut", delay: 0.2 },
+                  opacity: { duration: 1.5, ease: "easeInOut", delay: 0.2 },
+                  filter: { duration: 1.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" } 
+                }}
               />
               <defs>
                 <linearGradient id="timeline-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3b82f6" />
-                  <stop offset="50%" stopColor="#8b5cf6" />
-                  <stop offset="100%" stopColor="#ec4899" />
+                  <stop offset="0%" stopColor="#6366f1" /> {/* Indigo-500 */}
+                  <stop offset="50%" stopColor="#a855f7" /> {/* Purple-500 */}
+                  <stop offset="100%" stopColor="#ec4899" /> {/* Pink-500 */}
                 </linearGradient>
               </defs>
             </svg>
@@ -1030,9 +1051,9 @@ export default function Page() {
         {/* Animated Background Elements */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] opacity-30 animate-rotate">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-indigo-500/10 via-transparent to-transparent" style={{ '--tw-gradient-stops': 'var(--tw-gradient-from), var(--tw-gradient-to, rgb(99 102 241 / 0)) 70%' }}></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-indigo-500/10 via-transparent to-transparent"></div>
           </div>
-          <div className="absolute -bottom-1/4 -right-1/4 w-full h-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent" style={{ '--tw-gradient-stops': 'var(--tw-gradient-from), var(--tw-gradient-to, rgb(168 85 247 / 0)) 70%' }}></div>
+          <div className="absolute -bottom-1/4 -right-1/4 w-full h-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent"></div>
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1088,7 +1109,10 @@ export default function Page() {
                 details: "During my tenure as a Junior Council member, I was deeply involved in various initiatives that helped me develop essential leadership skills. I learned the importance of active listening, effective communication, and collaborative problem-solving. My experience in organizing community events and managing team dynamics has been invaluable in shaping my approach to leadership. I was particularly proud of our team's ability to work together to overcome challenges and achieve our collective goals.",
                 icon: Users,
                 gradient: "from-blue-500 via-blue-600 to-blue-500",
-                stats: "2+ Years Experience",
+                cardColor: "bg-blue-100/70 border-blue-300",
+                iconColor: "bg-blue-500",
+                statsColor: "bg-blue-50 text-blue-700 border-blue-200",
+                statsText: "2+ Years Experience",
                 emoji: "🌟",
                 images: [
                   "/images/Abraham_Samuel_Img.jpg",
@@ -1101,7 +1125,10 @@ export default function Page() {
                 details: "As Co-Chair and MIS Lead, I successfully streamlined our organization's data management processes while fostering a positive team environment. I implemented new project management tools that improved our efficiency by 40% and reduced response times for data requests. My role required me to bridge the gap between technical and non-technical team members, ensuring smooth communication and understanding across all levels of the organization. I'm particularly proud of how our team came together to overcome challenges and deliver exceptional results.",
                 icon: Award,
                 gradient: "from-green-500 via-green-600 to-green-500",
-                stats: "Team of 15+",
+                cardColor: "bg-green-100/70 border-green-300",
+                iconColor: "bg-green-500",
+                statsColor: "bg-green-50 text-green-700 border-green-200",
+                statsText: "Team of 15+",
                 emoji: "🚀",
                 images: [
                   "/images/Abraham_Samuel_Img.jpg",
@@ -1114,7 +1141,10 @@ export default function Page() {
                 details: "The Road Revive 1.0 event stands out as a defining moment in my Yi-YUVA journey. Witnessing firsthand how our efforts translated into real behavioral changes in road safety practices was incredibly rewarding. The event brought together community members, local authorities, and our team in a collaborative effort to make our roads safer. The positive feedback we received from participants and the visible impact on road safety awareness in the following months reinforced my commitment to this cause.",
                 icon: Heart,
                 gradient: "from-rose-500 via-rose-600 to-rose-500",
-                stats: "Life-changing",
+                cardColor: "bg-rose-100/70 border-rose-300",
+                iconColor: "bg-rose-500",
+                statsColor: "bg-rose-50 text-rose-700 border-rose-200",
+                statsText: "Life-changing",
                 emoji: "💖",
                 images: [
                   "/images/Abraham_Samuel_Img.jpg"
@@ -1126,7 +1156,10 @@ export default function Page() {
                 details: "Serving on the current council has been an incredible learning experience that has shaped my leadership philosophy. I've come to understand that effective governance requires a delicate balance between vision and execution. The importance of data-driven decision making, transparent communication, and continuous engagement with all stakeholders cannot be overstated. I've also learned valuable lessons about conflict resolution, team motivation, and the power of diverse perspectives in problem-solving.",
                 icon: Lightbulb,
                 gradient: "from-amber-400 via-amber-500 to-amber-400",
-                stats: "Key Learnings",
+                cardColor: "bg-amber-100/70 border-amber-300",
+                iconColor: "bg-amber-400",
+                statsColor: "bg-amber-50 text-amber-700 border-amber-200",
+                statsText: "Key Learnings",
                 emoji: "💡",
                 images: []
               },
@@ -1136,7 +1169,10 @@ export default function Page() {
                 details: "My contributions to Yi-YUVA have been diverse and impactful. As MIS Lead, I've overseen the digital transformation of our data management systems, resulting in improved efficiency and accessibility. I've played a key role in strategic planning for our road safety campaigns, ensuring they're both impactful and measurable. Mentoring newer members has been particularly rewarding, as I've been able to share my knowledge while learning from fresh perspectives. Each contribution has been a building block in strengthening our organization's capacity to serve the community.",
                 icon: Star,
                 gradient: "from-purple-500 via-purple-600 to-purple-500",
-                stats: "Multi-faceted",
+                cardColor: "bg-purple-100/70 border-purple-300",
+                iconColor: "bg-purple-500",
+                statsColor: "bg-purple-50 text-purple-700 border-purple-200",
+                statsText: "Multi-faceted",
                 emoji: "✨",
                 images: [
                   "/images/Abraham_Samuel_Img.jpg",
@@ -1149,7 +1185,10 @@ export default function Page() {
                 details: "Looking ahead, I'm excited about the potential to transform Yi-YUVA into a more digitally integrated organization. My vision includes implementing member engagement platforms that facilitate better communication and collaboration. I aim to expand our community outreach programs, making them more accessible through technology. Another key focus will be on developing innovative approaches to road safety education that leverage emerging technologies. My goal is to create sustainable programs that continue to deliver value long after my term ends.",
                 icon: Target,
                 gradient: "from-indigo-500 via-indigo-600 to-indigo-500",
-                stats: "Future Vision",
+                cardColor: "bg-indigo-100/70 border-indigo-300",
+                iconColor: "bg-indigo-500",
+                statsColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
+                statsText: "Future Vision",
                 emoji: "🎯",
                 images: []
               },
@@ -1159,7 +1198,10 @@ export default function Page() {
                 details: "I'm passionate about bringing innovative approaches to road safety education. Some of the creative event ideas I'd love to implement include immersive VR simulations that give participants a first-hand experience of road safety scenarios. Community art projects could transform public spaces while spreading important safety messages. I'm also excited about developing a youth ambassador program that empowers young leaders to champion road safety in their communities. These initiatives would be complemented by gamified learning experiences that make safety education engaging and memorable.",
                 icon: Zap,
                 gradient: "from-pink-500 via-pink-600 to-pink-500",
-                stats: "Innovation",
+                cardColor: "bg-pink-100/70 border-pink-300",
+                iconColor: "bg-pink-500",
+                statsColor: "bg-pink-50 text-pink-700 border-pink-200",
+                statsText: "Innovation",
                 emoji: "⚡",
                 images: []
               },
@@ -1169,7 +1211,10 @@ export default function Page() {
                 details: "In a Senior Council role, I see myself as a bridge between strategic vision and practical implementation. My focus would be on member development, ensuring that every team member has the tools and support they need to succeed. I'm particularly interested in driving technological innovation within our organization to improve efficiency and impact. Sustainability would be at the heart of all our initiatives, with a focus on creating programs that deliver lasting value. My approach would be collaborative, inclusive, and always aligned with our core mission.",
                 icon: Trophy,
                 gradient: "from-orange-500 via-orange-600 to-orange-500",
-                stats: "Leadership",
+                cardColor: "bg-orange-100/70 border-orange-300",
+                iconColor: "bg-orange-500",
+                statsColor: "bg-orange-50 text-orange-700 border-orange-200",
+                statsText: "Leadership",
                 emoji: "🏆",
                 images: [
                   "/images/Abraham_Samuel_Img.jpg"
@@ -1181,7 +1226,10 @@ export default function Page() {
                 details: "My journey with Yi-YUVA has been marked by diverse and meaningful contributions. As MIS Team Lead, I've overseen our digital transformation and data management strategies. My role as Road Safety Co-Chair allowed me to lead impactful community initiatives. I've been actively involved in major events like Road Revive 1.0 and Enlighten the Enroute 1.0. Beyond specific roles, I've contributed to process optimization, member mentoring, and strategic planning across multiple projects. Each experience has been a valuable learning opportunity and a chance to give back to the community.",
                 icon: MessageSquare,
                 gradient: "from-teal-500 via-teal-600 to-teal-500",
-                stats: "Full Portfolio",
+                cardColor: "bg-teal-100/70 border-teal-300",
+                iconColor: "bg-teal-500",
+                statsColor: "bg-teal-50 text-teal-700 border-teal-200",
+                statsText: "Full Portfolio",
                 emoji: "📋",
                 images: [
                   "/images/Abraham_Samuel_Img.jpg",
@@ -1193,56 +1241,92 @@ export default function Page() {
                 key={index}
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.05,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
+                transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-50px" }}
-                whileHover={{ y: -8 }}
-                className="group relative"
+                whileHover={{ y: -12, scale: 1.04 }}
+                className={`group relative ${item.cardColor} border-2 shadow-xl hover:shadow-2xl transition-all duration-500 rounded-[2rem] overflow-hidden`}
+                style={{
+                  boxShadow: `0 4px 32px 0 ${item.cardColor.includes('blue') ? 'rgba(59,130,246,0.15)' : item.cardColor.includes('green') ? 'rgba(34,197,94,0.15)' : item.cardColor.includes('rose') ? 'rgba(244,63,94,0.15)' : item.cardColor.includes('amber') ? 'rgba(251,191,36,0.15)' : item.cardColor.includes('purple') ? 'rgba(139,92,246,0.15)' : item.cardColor.includes('indigo') ? 'rgba(99,102,241,0.15)' : item.cardColor.includes('pink') ? 'rgba(236,72,153,0.15)' : item.cardColor.includes('orange') ? 'rgba(251,146,60,0.15)' : item.cardColor.includes('teal') ? 'rgba(20,184,166,0.15)' : 'rgba(0,0,0,0.10)'}`
+                }}
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-300 group-hover:duration-200" style={{
-                  backgroundImage: `linear-gradient(45deg, ${item.gradient.includes('from-') ? '#' + item.gradient.split('from-')[1].split(' ')[0] : '#3b82f6'}, ${item.gradient.includes('via-') ? '#' + item.gradient.split('via-')[1].split(' ')[0] : '#8b5cf6'}, ${item.gradient.includes('to-') ? '#' + item.gradient.split('to-')[1].split(' ')[0] : '#6366f1'})`
-                }}></div>
-                <div className="relative h-full bg-white/80 backdrop-blur-sm rounded-2xl p-0.5 overflow-hidden transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-indigo-500/10">
-                  <div className="absolute inset-0 bg-[radial-gradient(100%_100%_at_0%_0%,#ffffff40_0%,#ffffff00_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative h-full bg-white rounded-2xl p-6 sm:p-8 flex flex-col">
+                {/* Animated gradient border */}
+                <motion.div
+                  className="absolute -inset-1 rounded-[2rem] pointer-events-none z-0"
+                  animate={{
+                    background: [
+                      `conic-gradient(from 0deg at var(--x,50%) var(--y,50%), #fff 0deg, ${item.cardColor.split(' ')[0].replace('bg-','').replace('-100/70','')} 90deg, #fff 180deg, ${item.cardColor.split(' ')[0].replace('bg-','').replace('-100/70','')} 270deg, #fff 360deg)`
+                    ]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+                  style={{ filter: 'blur(8px)', opacity: 0.7 }}
+                />
+                
+                {/* Interactive particles */}
+                <div className="absolute inset-0 overflow-hidden rounded-[2rem]">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+
+                <div className="relative h-full rounded-[2rem] p-0.5 overflow-hidden transition-all duration-500">
+                  <div className="absolute inset-0 bg-white/70 backdrop-blur-2xl rounded-[2rem]"></div>
+                  <div className="relative h-full rounded-[2rem] p-6 sm:p-8 flex flex-col z-10">
                     <div className="flex items-start justify-between mb-6">
+                      {/* Enhanced floating icon */}
                       <motion.div 
-                        className={`bg-gradient-to-r ${item.gradient} text-white p-3 rounded-xl shadow-lg shadow-${item.gradient.split(' ')[1].replace('from-', '')}-500/20`}
-                        whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
-                        transition={{ duration: 0.5 }}
+                        className={`p-4 rounded-2xl shadow-lg ${item.iconColor} text-white`}
+                        animate={{ y: [0, -8, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+                        whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0] }}
                       >
-                        <item.icon size={22} className="text-white/90" />
+                        <item.icon size={28} className="text-white/90 drop-shadow-lg" />
                       </motion.div>
-                      <span className="text-xs font-bold px-3 py-1.5 bg-gradient-to-r from-gray-50 to-gray-100 text-gray-600 rounded-full border border-gray-100 shadow-sm">
-                        {item.stats}
+                      <span className={`text-xs font-bold px-4 py-2 rounded-full border shadow-md ${item.statsColor} transform group-hover:scale-105 transition-transform duration-300`}>
+                        {item.statsText}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-600 mb-4 leading-tight transition-all duration-300 group-hover:translate-x-1">
+                    
+                    {/* Enhanced typography */}
+                    <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700 mb-4 leading-tight transition-all duration-500 group-hover:translate-x-2 group-hover:scale-105 tracking-tight">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600 text-sm sm:text-[15px] leading-relaxed mb-6 flex-grow transition-all duration-300 group-hover:text-gray-700">
+                    <p className="text-sm sm:text-base leading-relaxed mb-6 flex-grow transition-all duration-500 group-hover:text-gray-900 font-medium group-hover:translate-x-2">
                       {item.content}
                     </p>
-                    <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
+                    
+                    <div className="mt-auto pt-4 border-t border-gray-200/50 flex items-center justify-between">
+                      {/* Enhanced button with shine */}
                       <motion.button
                         onClick={(e) => {
                           e.stopPropagation();
+                          console.log("Setting selectedQuestion with statsText:", item.statsText);
                           setSelectedQuestion(item);
                         }}
-                        className="flex items-center text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors group/readmore"
+                        className="flex items-center text-sm font-semibold text-blue-700 hover:text-blue-900 px-5 py-2 rounded-xl hover:bg-blue-100/80 transition-all duration-500 group/readmore hover:shadow-lg relative overflow-hidden"
                         initial={{ x: 0 }}
-                        whileHover={{ x: 4 }}
+                        whileHover={{ x: 8 }}
+                        whileTap={{ scale: 0.95 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                       >
                         <span>Read more</span>
-                        <ArrowRight size={16} className="ml-1.5 mt-0.5 transition-transform group-hover/readmore:translate-x-1" />
+                        <ArrowRight size={20} className="ml-2 mt-0.5 transition-transform group-hover/readmore:translate-x-4" />
+                        {/* Enhanced shine effect */}
+                        <motion.span
+                          className="absolute left-0 top-0 h-full w-1/3 bg-white/60 blur-xl opacity-0 group-hover:opacity-100"
+                          animate={{ x: ['-100%', '200%'] }}
+                          transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop', ease: 'linear' }}
+                        />
                       </motion.button>
-                      <span className="text-2xl opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" role="img" aria-hidden="true">
+                      
+                      {/* Enhanced emoji */}
+                      <motion.span 
+                        className="text-3xl opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 transition-all duration-500" 
+                        role="img" 
+                        aria-hidden="true"
+                        whileHover={{ scale: 1.2, rotate: [0, -10, 10, 0] }}
+                        transition={{ duration: 0.5 }}
+                      >
                         {item.emoji}
-                      </span>
+                      </motion.span>
                     </div>
                   </div>
                 </div>
@@ -1409,125 +1493,6 @@ export default function Page() {
         {/* Enhanced Background Effects */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Animated gradient overlay */}
-        <motion.div
-          className="absolute inset-0 opacity-30"
-          animate={{
-            background: [
-                "radial-gradient(circle at 20% 50%, rgba(59,130,246,0.2) 0%, transparent 50%)",
-                "radial-gradient(circle at 80% 50%, rgba(139,92,246,0.2) 0%, transparent 50%)",
-                "radial-gradient(circle at 50% 80%, rgba(236,72,153,0.2) 0%, transparent 50%)",
-                "radial-gradient(circle at 30% 70%, rgba(16,185,129,0.2) 0%, transparent 50%)",
-                "radial-gradient(circle at 70% 30%, rgba(245,158,11,0.2) 0%, transparent 50%)",
-                "radial-gradient(circle at 40% 40%, rgba(99,102,241,0.2) 0%, transparent 50%)",
-                "radial-gradient(circle at 60% 60%, rgba(244,63,94,0.2) 0%, transparent 50%)",
-              ],
-            }}
-            transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY }}
-          />
-          
-          {/* Floating particles */}
-          {[...Array(30)].map((_, i) => (
-          <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full"
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                scale: Math.random() * 0.5 + 0.5,
-                opacity: 0,
-              }}
-              animate={{
-                y: [0, -200],
-                opacity: [0, 1, 0],
-                scale: [1, 1.2, 1],
-                rotate: [0, 360],
-              }}
-              transition={{
-                duration: Math.random() * 5 + 4,
-                repeat: Number.POSITIVE_INFINITY,
-                delay: Math.random() * 4,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-
-          {/* Animated shapes */}
-          {[...Array(25)].map((_, i) => (
-            <motion.div
-              key={`shape-${i}`}
-              className="absolute rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10"
-              initial={{
-                x: Math.random() * 120 - 60,
-                y: Math.random() * 100,
-                width: `clamp(120px, ${Math.random() * 300 + 100}px, 500px)`,
-                height: `clamp(120px, ${Math.random() * 300 + 100}px, 500px)`,
-                opacity: 0.08,
-                filter: 'blur(20px)',
-                rotate: Math.random() * 360,
-              }}
-              animate={{
-                y: [0, Math.random() * 40 + 20, 0],
-                x: [null, Math.random() * 40 - 20],
-                rotate: [0, Math.random() * 360],
-                scale: [1, 1.1, 1],
-                opacity: [0.08, 0.12, 0.08],
-              }}
-              transition={{
-                duration: Math.random() * 30 + 30,
-                repeat: Number.POSITIVE_INFINITY,
-                repeatType: "reverse",
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-
-          {/* Animated lines */}
-          {[...Array(12)].map((_, i) => (
-            <motion.div
-              key={`line-${i}`}
-              className="absolute h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"
-              initial={{
-                x: Math.random() * 100 - 50,
-                y: Math.random() * 100,
-                width: `${Math.random() * 200 + 100}px`,
-                opacity: 0,
-                rotate: Math.random() * 360,
-              }}
-              animate={{
-                opacity: [0, 0.5, 0],
-                rotate: [0, 360],
-                scale: [1, 1.2, 1],
-                x: [null, Math.random() * 40 - 20],
-              }}
-              transition={{
-                duration: Math.random() * 20 + 20,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-              }}
-            />
-          ))}
-
-          {/* Animated dots */}
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={`dot-${i}`}
-              className="absolute w-1 h-1 bg-white/20 rounded-full"
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                scale: 0,
-              }}
-              animate={{
-                scale: [0, 1, 0],
-                opacity: [0, 0.5, 0],
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                repeat: Number.POSITIVE_INFINITY,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-6xl">
@@ -1606,7 +1571,7 @@ export default function Page() {
                 >
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{
+                  animate={{
                       x: ['-100%', '100%'],
                     }}
                     transition={{
