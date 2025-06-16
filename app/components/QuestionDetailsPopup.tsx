@@ -1,8 +1,8 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from "framer-motion"
-import { X } from "lucide-react"
+import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 
 // Custom scrollbar styles for better visibility
@@ -49,6 +49,9 @@ export default function QuestionDetailsPopup({
   images = [],
   icon,
 }: QuestionDetailsPopupProps) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   if (!isOpen) return null
 
   // Extract gradient colors for background
@@ -62,6 +65,30 @@ export default function QuestionDetailsPopup({
   const borderColor = isDarkGradient ? 'border-white/20' : 'border-gray-200';
   const iconBgColor = isDarkGradient ? 'bg-white/20' : 'bg-white/80';
   
+  const handleImageClick = (img: string, index: number) => {
+    setSelectedImage(img);
+    setCurrentImageIndex(index);
+  };
+
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const nextIndex = (currentImageIndex + 1) % images.length;
+    setCurrentImageIndex(nextIndex);
+    setSelectedImage(images[nextIndex]);
+  };
+
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const prevIndex = (currentImageIndex - 1 + images.length) % images.length;
+    setCurrentImageIndex(prevIndex);
+    setSelectedImage(images[prevIndex]);
+  };
+
+  const handleClosePreview = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedImage(null);
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -304,6 +331,75 @@ export default function QuestionDetailsPopup({
                   </div>
                 </motion.div>
 
+                {/* Image Preview Popup */}
+                <AnimatePresence>
+                  {selectedImage && (
+                    <motion.div
+                      className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-3xl flex items-center justify-center"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      onClick={handleClosePreview}
+                    >
+                      <motion.div
+                        className="relative w-full h-full flex items-center justify-center p-4"
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.9, opacity: 0 }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {/* Close Button */}
+                        <motion.button
+                          onClick={handleClosePreview}
+                          className="absolute top-4 right-4 p-2 text-white/90 hover:text-white bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all z-50"
+                          whileHover={{ scale: 1.1, rotate: 90 }}
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <X size={24} />
+                        </motion.button>
+
+                        {/* Navigation Buttons */}
+                        {images.length > 1 && (
+                          <>
+                            <motion.button
+                              onClick={handlePrevImage}
+                              className="absolute left-4 p-2 text-white/90 hover:text-white bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all z-50"
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                            >
+                              <ChevronLeft size={24} />
+                            </motion.button>
+                            <motion.button
+                              onClick={handleNextImage}
+                              className="absolute right-4 p-2 text-white/90 hover:text-white bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all z-50"
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                            >
+                              <ChevronRight size={24} />
+                            </motion.button>
+                          </>
+                        )}
+
+                        {/* Image */}
+                        <div className="relative w-full max-w-5xl h-[80vh] rounded-xl overflow-hidden">
+                          <Image
+                            src={selectedImage}
+                            alt={`${title} ${currentImageIndex + 1}`}
+                            fill
+                            className="object-contain"
+                            priority
+                          />
+                        </div>
+
+                        {/* Image Counter */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm z-50">
+                          {currentImageIndex + 1} / {images.length}
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 {/* Gallery */}
                 {images && images.length > 0 && (
                   <motion.div 
@@ -324,7 +420,7 @@ export default function QuestionDetailsPopup({
                       {images.map((img, i) => (
                         <motion.div 
                           key={i} 
-                          className={`relative aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-${bgColor}-50/80 to-white/90 group border border-${bgColor}-100/50 shadow-md`}
+                          className={`relative aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-${bgColor}-50/80 to-white/90 group border border-${bgColor}-100/50 shadow-md cursor-pointer`}
                           initial={{ opacity: 0, scale: 0.95 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.6 + i * 0.1 }}
@@ -334,6 +430,7 @@ export default function QuestionDetailsPopup({
                             transition: { type: 'spring', stiffness: 300, damping: 20 }
                           }}
                           whileTap={{ scale: 0.98 }}
+                          onClick={() => handleImageClick(img, i)}
                         >
                           <Image
                             src={img}
@@ -348,18 +445,6 @@ export default function QuestionDetailsPopup({
                               Image {i + 1}
                             </span>
                           </div>
-                          <motion.div
-                            className={`absolute inset-0 bg-gradient-to-br from-${bgColor}-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300`}
-                            animate={{
-                              opacity: [0, 0.2, 0],
-                              scale: [1, 1.1, 1],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Number.POSITIVE_INFINITY,
-                              ease: "easeInOut",
-                            }}
-                          />
                         </motion.div>
                       ))}
                     </div>
