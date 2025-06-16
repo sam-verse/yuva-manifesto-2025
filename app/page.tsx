@@ -8,7 +8,7 @@ import {
   TrendingUp, BarChart2, Cpu, Database, Server, Wifi, Shield, Clock, CheckCircle, Users as UsersIcon, 
   ArrowUpRight, Sparkles, X, ArrowRight, ChevronDown, ChevronUp, ExternalLink, Github, Twitter
 } from "lucide-react"
-import QuestionDetailsPopup from "./components/QuestionDetailsPopup"
+import dynamic from 'next/dynamic'
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Input } from "@/components/ui/input"
@@ -16,7 +16,10 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { ImageCarousel } from "./components/ImageCarousel"
-import ExperiencePopup from "./components/ExperiencePopup"
+
+// Dynamically import components that use browser APIs
+const QuestionDetailsPopup = dynamic(() => import('./components/QuestionDetailsPopup'), { ssr: false })
+const ExperiencePopup = dynamic(() => import('./components/ExperiencePopup'), { ssr: false })
 
 // Dynamic Background Component
 const DynamicBackground = () => {
@@ -109,6 +112,11 @@ export default function Page() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -401,6 +409,10 @@ export default function Page() {
       </nav>
     </motion.div>
   )
+
+  if (!mounted) {
+    return null // or a loading state
+  }
 
   return (
     <main className="relative min-h-screen bg-white">
