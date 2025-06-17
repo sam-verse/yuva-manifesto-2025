@@ -167,41 +167,71 @@ export default function Page() {
 
     // Get color variations based on the experience's bgColor
     const getColorVariations = (bgColor: string) => {
-      const colorMap: { [key: string]: { light: string, dark: string, border: string, text: string, icon: string } } = {
+      const colorMap: { [key: string]: { 
+        light: string, 
+        dark: string, 
+        border: string, 
+        text: string, 
+        icon: string,
+        button: string,
+        buttonHover: string,
+        header: string,
+        gradient: string
+      }} = {
         'bg-blue-600': {
           light: 'from-blue-50 to-blue-100',
           dark: 'from-blue-900/20 to-blue-800/20',
           border: 'border-blue-100 dark:border-blue-800',
           text: 'text-blue-700 dark:text-blue-300',
-          icon: 'text-blue-600 dark:text-blue-400'
+          icon: 'text-blue-600 dark:text-blue-400',
+          button: 'bg-blue-600',
+          buttonHover: 'hover:bg-blue-700',
+          header: 'bg-blue-600',
+          gradient: 'from-blue-600 to-blue-700'
         },
         'bg-purple-600': {
           light: 'from-purple-50 to-purple-100',
           dark: 'from-purple-900/20 to-purple-800/20',
           border: 'border-purple-100 dark:border-purple-800',
           text: 'text-purple-700 dark:text-purple-300',
-          icon: 'text-purple-600 dark:text-purple-400'
+          icon: 'text-purple-600 dark:text-purple-400',
+          button: 'bg-purple-600',
+          buttonHover: 'hover:bg-purple-700',
+          header: 'bg-purple-600',
+          gradient: 'from-purple-600 to-purple-700'
         },
         'bg-green-600': {
           light: 'from-green-50 to-green-100',
           dark: 'from-green-900/20 to-green-800/20',
           border: 'border-green-100 dark:border-green-800',
           text: 'text-green-700 dark:text-green-300',
-          icon: 'text-green-600 dark:text-green-400'
+          icon: 'text-green-600 dark:text-green-400',
+          button: 'bg-green-600',
+          buttonHover: 'hover:bg-green-700',
+          header: 'bg-green-600',
+          gradient: 'from-green-600 to-green-700'
         },
         'bg-pink-600': {
           light: 'from-pink-50 to-pink-100',
           dark: 'from-pink-900/20 to-pink-800/20',
           border: 'border-pink-100 dark:border-pink-800',
           text: 'text-pink-700 dark:text-pink-300',
-          icon: 'text-pink-600 dark:text-pink-400'
+          icon: 'text-pink-600 dark:text-pink-400',
+          button: 'bg-pink-600',
+          buttonHover: 'hover:bg-pink-700',
+          header: 'bg-pink-600',
+          gradient: 'from-pink-600 to-pink-700'
         },
         'bg-orange-600': {
           light: 'from-orange-50 to-orange-100',
           dark: 'from-orange-900/20 to-orange-800/20',
           border: 'border-orange-100 dark:border-orange-800',
           text: 'text-orange-700 dark:text-orange-300',
-          icon: 'text-orange-600 dark:text-orange-400'
+          icon: 'text-orange-600 dark:text-orange-400',
+          button: 'bg-orange-600',
+          buttonHover: 'hover:bg-orange-700',
+          header: 'bg-orange-600',
+          gradient: 'from-orange-600 to-orange-700'
         }
       };
       return colorMap[bgColor] || colorMap['bg-blue-600'];
@@ -223,20 +253,20 @@ export default function Page() {
           className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 rounded-2xl shadow-2xl"
         >
           {/* Header with Gradient */}
-          <div className={`h-2 w-full ${experience.bgColor}`}></div>
+          <div className={`h-2 w-full bg-gradient-to-r ${colors.gradient}`}></div>
 
           <div className="p-6 sm:p-8">
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
+              className={`absolute top-4 right-4 p-2 rounded-full ${colors.button} ${colors.buttonHover} text-white transition-colors`}
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Header Section */}
             <div className="flex items-start gap-4 mb-6">
-              <div className={`p-3 rounded-xl shadow-sm ${experience.bgColor} text-white`}>
+              <div className={`p-3 rounded-xl shadow-sm ${colors.header} text-white`}>
                 <experience.icon className="w-6 h-6" />
               </div>
               <div>
@@ -421,11 +451,13 @@ export default function Page() {
             onClose={() => setSelectedQuestion(null)}
             title={selectedQuestion.title}
             content={selectedQuestion.content}
-            details={selectedQuestion.details || selectedQuestion.content}
-            stats={selectedQuestion.statsText}
+            details={selectedQuestion.details}
+            stats={selectedQuestion.stats}
             gradient={selectedQuestion.gradient}
             emoji={selectedQuestion.emoji}
             images={selectedQuestion.images}
+            statsColorClass={selectedQuestion.statsColorClass || "text-blue-600 dark:text-blue-400"}
+            experienced={selectedQuestion.experienced || false}
           />
         )}
       </AnimatePresence>
