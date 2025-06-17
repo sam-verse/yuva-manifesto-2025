@@ -6,7 +6,8 @@ import {
   Trophy, Code, Award, Calendar, Lightbulb, Users, Rocket, Globe, Linkedin, Instagram, Facebook, 
   Menu, ChevronLeft, ChevronRight, Mail, Phone, MapPin, Star, Target, Heart, Zap, MessageSquare, 
   TrendingUp, BarChart2, Cpu, Database, Server, Wifi, Shield, Clock, CheckCircle, Users as UsersIcon, 
-  ArrowUpRight, Sparkles, X, ArrowRight, ChevronDown, ChevronUp, ExternalLink, Github, Twitter
+  ArrowUpRight, Sparkles, X, ArrowRight, ChevronDown, ChevronUp, ExternalLink, Github, Twitter, 
+  FileText, Tags
 } from "lucide-react"
 import dynamic from 'next/dynamic'
 import { Button } from "@/components/ui/button"
@@ -164,208 +165,193 @@ export default function Page() {
   const ExperienceModal = ({ experience, onClose }: { experience: ExperienceItem | null, onClose: () => void }) => {
     if (!experience) return null;
 
+    // Get color variations based on the experience's bgColor
+    const getColorVariations = (bgColor: string) => {
+      const colorMap: { [key: string]: { light: string, dark: string, border: string, text: string, icon: string } } = {
+        'bg-blue-600': {
+          light: 'from-blue-50 to-blue-100',
+          dark: 'from-blue-900/20 to-blue-800/20',
+          border: 'border-blue-100 dark:border-blue-800',
+          text: 'text-blue-700 dark:text-blue-300',
+          icon: 'text-blue-600 dark:text-blue-400'
+        },
+        'bg-purple-600': {
+          light: 'from-purple-50 to-purple-100',
+          dark: 'from-purple-900/20 to-purple-800/20',
+          border: 'border-purple-100 dark:border-purple-800',
+          text: 'text-purple-700 dark:text-purple-300',
+          icon: 'text-purple-600 dark:text-purple-400'
+        },
+        'bg-green-600': {
+          light: 'from-green-50 to-green-100',
+          dark: 'from-green-900/20 to-green-800/20',
+          border: 'border-green-100 dark:border-green-800',
+          text: 'text-green-700 dark:text-green-300',
+          icon: 'text-green-600 dark:text-green-400'
+        },
+        'bg-pink-600': {
+          light: 'from-pink-50 to-pink-100',
+          dark: 'from-pink-900/20 to-pink-800/20',
+          border: 'border-pink-100 dark:border-pink-800',
+          text: 'text-pink-700 dark:text-pink-300',
+          icon: 'text-pink-600 dark:text-pink-400'
+        },
+        'bg-orange-600': {
+          light: 'from-orange-50 to-orange-100',
+          dark: 'from-orange-900/20 to-orange-800/20',
+          border: 'border-orange-100 dark:border-orange-800',
+          text: 'text-orange-700 dark:text-orange-300',
+          icon: 'text-orange-600 dark:text-orange-400'
+        }
+      };
+      return colorMap[bgColor] || colorMap['bg-blue-600'];
+    };
+
+    const colors = getColorVariations(experience.bgColor);
+
     return (
-      <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      >
         <motion.div
-          initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-          animate={{ opacity: 1, backdropFilter: 'blur(4px)' }}
-          exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-          className="fixed inset-0 z-50 overflow-y-auto p-4 md:p-8 bg-black/50 backdrop-blur-sm"
-          onClick={(e) => e.target === e.currentTarget && onClose()}
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 rounded-2xl shadow-2xl"
         >
-          <div className="flex items-center justify-center min-h-full">
-            <motion.div
-              initial={{ y: 20, opacity: 0, scale: 0.98 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: -20, opacity: 0, scale: 0.98 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-5xl max-h-[90vh] bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-gray-100/20"
-              ref={modalRef}
+          {/* Header with Gradient */}
+          <div className={`h-2 w-full ${experience.bgColor}`}></div>
+
+          <div className="p-6 sm:p-8">
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
             >
-              {/* Header with gradient */}
-              <div className={`relative ${experience.bgColor} p-6 text-white`}>
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <div className="flex items-center space-x-2 mb-1">
-                        <div className="p-2 rounded-lg bg-white/10 backdrop-blur-sm">
-                          <experience.icon className="w-6 h-6" />
-                        </div>
-                        <span className="text-sm font-medium bg-white/20 px-2 py-1 rounded-full">
-                          {experience.company}
-                        </span>
-                      </div>
-                      <h3 className="text-2xl md:text-3xl font-bold mt-2">{experience.title}</h3>
-                      <div className="flex items-center mt-2 text-sm text-white/90">
-                        <Calendar className="w-4 h-4 mr-1.5" />
-                        <span>{experience.date}</span>
-                      </div>
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Header Section */}
+            <div className="flex items-start gap-4 mb-6">
+              <div className={`p-3 rounded-xl shadow-sm ${experience.bgColor} text-white`}>
+                <experience.icon className="w-6 h-6" />
+              </div>
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                  {experience.title}
+                </h2>
+                <div className="flex flex-wrap items-center gap-2 text-gray-600 dark:text-gray-300">
+                  <span className="font-medium">{experience.company}</span>
+                  <span>•</span>
+                  <span>{experience.date}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Stats Section */}
+            <div className={`mb-6 p-4 rounded-xl bg-gradient-to-r ${colors.light} dark:${colors.dark} border ${colors.border}`}>
+              <div className={`flex items-center gap-2 ${colors.text}`}>
+                <TrendingUp className="w-5 h-5" />
+                <span className="font-semibold">{experience.stats}</span>
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                <FileText className={`w-5 h-5 ${colors.icon}`} />
+                Overview
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                {experience.details}
+              </p>
+            </div>
+
+            {/* Skills Section */}
+            {experience.skills && experience.skills.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <Code className={`w-5 h-5 ${colors.icon}`} />
+                  Key Skills
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {experience.skills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r ${colors.light} dark:${colors.dark} ${colors.text} border ${colors.border}`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Highlights Section */}
+            {experience.highlights && experience.highlights.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <Award className={`w-5 h-5 ${colors.icon}`} />
+                  Key Achievements
+                </h3>
+                <ul className="space-y-2">
+                  {experience.highlights.map((highlight, index) => (
+                    <li key={index} className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
+                      <CheckCircle className={`w-5 h-5 ${colors.icon} flex-shrink-0 mt-0.5`} />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Image Gallery */}
+            {experience.images && experience.images.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <Image className={`w-5 h-5 ${colors.icon}`} />
+                  Gallery
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {experience.images.map((image, index) => (
+                    <div key={index} className="relative aspect-video rounded-xl overflow-hidden">
+                      <Image
+                        src={image}
+                        alt={`${experience.title} - Image ${index + 1}`}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
-                    <button
-                      onClick={onClose}
-                      className="p-2 -mr-2 text-white/80 hover:text-white rounded-full hover:bg-white/10 transition-colors"
-                      aria-label="Close"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
-              </div>
-
-              {/* Content */}
-              <div className="flex-1 overflow-y-auto custom-scrollbar">
-                {/* Main Image with Parallax */}
-                {experience.images?.[0] && (
-                  <motion.div 
-                    className="relative h-64 md:h-80 overflow-hidden"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                  >
-                    <Image
-                      src={experience.images[0]}
-                      alt={experience.title}
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-                  </motion.div>
-                )}
-
-                <div className="p-6 md:p-8 space-y-8">
-                  {/* Description */}
-                  <motion.div 
-                    className="prose max-w-none"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-                      {experience.details || experience.description}
-                    </p>
-                  </motion.div>
-
-                  {/* Highlights */}
-                  {experience.highlights && experience.highlights.length > 0 && (
-                    <motion.div 
-                      className="space-y-6"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      <div className="flex items-center">
-                        <div className={`h-0.5 flex-1 ${experience.bgColor}`}></div>
-                        <h4 className="px-4 text-lg md:text-xl font-bold text-gray-900 whitespace-nowrap">
-                          Key Highlights
-                        </h4>
-                        <div className={`h-0.5 flex-1 ${experience.bgColor}`}></div>
-                      </div>
-                      <ul className="grid gap-3 md:grid-cols-2">
-                        {experience.highlights.map((highlight, i) => (
-                          <motion.li 
-                            key={i} 
-                            className="flex items-start group"
-                            whileHover={{ x: 4 }}
-                            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                          >
-                            <div className={`p-1 mr-3 rounded-full ${experience.bgColor} text-white`}>
-                              <CheckCircle className="w-4 h-4" />
-                            </div>
-                            <span className="text-gray-700">{highlight}</span>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  )}
-
-                  {/* Skills */}
-                  {experience.skills && experience.skills.length > 0 && (
-                    <motion.div 
-                      className="space-y-4"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                    >
-                      <h4 className="text-lg font-semibold text-gray-900">
-                        Skills & Technologies
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {experience.skills.map((skill, i) => (
-                          <motion.span
-                            key={i}
-                            className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-blue-50 text-blue-700 border border-blue-100"
-                            whileHover={{ y: -2, boxShadow: '0 4px 12px -2px rgba(59, 130, 246, 0.3)' }}
-                            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                          >
-                            {skill}
-                          </motion.span>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Image Gallery */}
-                  {experience.images && experience.images.length > 1 && (
-                    <motion.div 
-                      className="mt-8 space-y-4"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 }}
-                    >
-                      <h4 className="text-lg font-semibold text-gray-900">
-                        Project Gallery
-                      </h4>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        {experience.images.slice(1).map((img, i) => (
-                          <motion.div 
-                            key={i} 
-                            className="relative h-32 md:h-40 rounded-xl overflow-hidden border border-gray-100 group"
-                            whileHover={{ y: -4, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)' }}
-                            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                          >
-                            <Image
-                              src={img}
-                              alt={`${experience.title} ${i + 1}`}
-                              fill
-                              className="object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                              <span className="text-white font-medium text-sm bg-black/50 px-3 py-1.5 rounded-full">
-                                View {i + 1}
-                              </span>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
+                  ))}
                 </div>
               </div>
+            )}
 
-              {/* Footer */}
-              <div className="border-t border-gray-100 p-4 bg-gray-50">
-                <div className="flex justify-between items-center">
-                  <div className="text-sm text-gray-500">
-                    {experience.tags?.map((tag, i) => (
-                      <span key={i} className="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2 mb-1">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <button
-                    onClick={onClose}
-                    className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
-                  >
-                    Close Details
-                  </button>
+            {/* Tags Section */}
+            {experience.tags && experience.tags.length > 0 && (
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                  <Tags className={`w-5 h-5 ${colors.icon}`} />
+                  Tags
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {experience.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r ${colors.light} dark:${colors.dark} ${colors.text} border ${colors.border}`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </motion.div>
+            )}
           </div>
         </motion.div>
-      </AnimatePresence>
+      </motion.div>
     );
   };
 
@@ -778,14 +764,18 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Experience Section */}
-      {/* Experience Section - Modern Creative Layout */}
-      <section id="experience" className="py-16 sm:py-24 relative z-10 overflow-hidden">
-        {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-blue-50/80 to-transparent -z-10"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-t from-purple-50/80 to-transparent -z-10"></div>
+      {/* Experience Section - Vertical Timeline */}
+      <section id="experience" className="relative py-20 sm:py-28 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 -z-10 overflow-hidden opacity-80">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#6366f110,transparent_70%)] dark:bg-[radial-gradient(circle_at_center,#6366f105,transparent_80%)] animate-pulse-slow"></div>
+          <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] opacity-30 animate-rotate">
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent"></div>
+          </div>
+          <div className="absolute -bottom-1/4 -right-1/4 w-full h-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent"></div>
+        </div>
         
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -806,39 +796,176 @@ export default function Page() {
           </motion.div>
 
           <div className="relative max-w-6xl mx-auto">
-            {/* Decorative Timeline Curve */}
-            <svg className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full" viewBox="0 0 20 100" preserveAspectRatio="none">
-              <motion.path 
-                d="M10,0 C15,20 5,40 10,60 C15,80 5,100 10,100" 
-                stroke="url(#timeline-gradient)" 
-                strokeWidth="5" 
-                fill="none"
-                initial={{ pathLength: 0, opacity: 0, filter: 'drop-shadow(0 0 18px rgba(99, 102, 241, 1))', }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true, margin: "-50px 0px" }}
-                animate={{
-                  filter: [
-                    'drop-shadow(0 0 18px rgba(99, 102, 241, 1))',
-                    'drop-shadow(0 0 35px rgba(168, 85, 247, 1))',
-                    'drop-shadow(0 0 18px rgba(99, 102, 241, 1))'
-                  ]
+            {/* Enhanced Timeline Line with Dynamic Animations */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-2 transform -translate-x-1/2 hidden lg:block">
+              {/* Main Timeline Line with Enhanced Gradient Flow */}
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500"
+                initial={{ scaleY: 0, opacity: 0 }}
+                whileInView={{ scaleY: 1, opacity: 1 }}
+                transition={{ 
+                  duration: 1.8,
+                  ease: [0.76, 0, 0.24, 1],
+                  delay: 0.3
                 }}
-                transition={{
-                  pathLength: { duration: 1.5, ease: "easeInOut", delay: 0.2 },
-                  opacity: { duration: 1.5, ease: "easeInOut", delay: 0.2 },
-                  filter: { duration: 1.2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" } 
+                viewport={{ 
+                  once: true, 
+                  margin: "-50px 0px -50px 0px",
+                  amount: 0.1
                 }}
-              />
-              <defs>
-                <linearGradient id="timeline-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#6366f1" /> {/* Indigo-500 */}
-                  <stop offset="50%" stopColor="#a855f7" /> {/* Purple-500 */}
-                  <stop offset="100%" stopColor="#ec4899" /> {/* Pink-500 */}
-                </linearGradient>
-              </defs>
-            </svg>
+              >
+                {/* Enhanced Animated Gradient Flow */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500"
+                  animate={{
+                    backgroundPosition: ['0% 0%', '0% 100%'],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{
+                    backgroundSize: '100% 200%',
+                  }}
+                />
+                {/* Enhanced Glow Effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 blur-2xl"
+                  animate={{
+                    opacity: [0.2, 0.5, 0.2],
+                    scale: [1, 1.08, 1]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                {/* Additional Pulsing Effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-pink-500/20"
+                  animate={{
+                    opacity: [0.1, 0.3, 0.1],
+                    scale: [1, 1.15, 1]
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                {/* Energy Flow Effect */}
+                <motion.div
+                  className="absolute inset-0"
+                  animate={{
+                    backgroundPosition: ['0% 0%', '0% 100%'],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{
+                    backgroundImage: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)',
+                    backgroundSize: '100% 200%',
+                  }}
+                />
+                {/* Sparkle Effect */}
+                <motion.div
+                  className="absolute inset-0"
+                  animate={{
+                    opacity: [0, 0.6, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  style={{
+                    backgroundImage: 'radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, transparent 70%)',
+                    backgroundSize: '100% 200%',
+                  }}
+                />
+              </motion.div>
+            </div>
 
-            <div className="grid gap-y-12 lg:grid-cols-2 lg:gap-x-16">
+            {/* Enhanced Mobile Timeline Line */}
+            <div className="absolute left-4 top-0 bottom-0 w-1.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 lg:hidden">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500"
+                initial={{ scaleY: 0, opacity: 0 }}
+                whileInView={{ scaleY: 1, opacity: 1 }}
+                transition={{ 
+                  duration: 1.5,
+                  ease: [0.76, 0, 0.24, 1],
+                  delay: 0.2
+                }}
+                viewport={{ 
+                  once: true, 
+                  margin: "-30px 0px -30px 0px",
+                  amount: 0.1
+                }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500"
+                  animate={{
+                    backgroundPosition: ['0% 0%', '0% 100%'],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{
+                    backgroundSize: '100% 200%',
+                  }}
+                />
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 blur-xl"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                {/* Additional Pulsing Effect for Mobile */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-blue-500/20 via-purple-500/20 to-pink-500/20"
+                  animate={{
+                    opacity: [0.2, 0.4, 0.2],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                {/* Energy Flow Effect for Mobile */}
+                <motion.div
+                  className="absolute inset-0"
+                  animate={{
+                    backgroundPosition: ['0% 0%', '0% 100%'],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{
+                    backgroundImage: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%)',
+                    backgroundSize: '100% 200%',
+                  }}
+                />
+              </motion.div>
+            </div>
+
+            <div className="space-y-16">
               {[
                 {
                   title: "MIS Team Lead",
@@ -932,45 +1059,150 @@ export default function Page() {
                 },
               ].map((item, index) => (
                 <motion.div 
-                  key={index} 
-                  className={`relative group ${index % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8'}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true, margin: "-50px" }}
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ 
+                    duration: 0.8,
+                    delay: index * 0.2,
+                    ease: [0.21, 0.47, 0.32, 0.98]
+                  }}
+                  className={`relative ${index % 2 === 0 ? 'lg:pr-1/2' : 'lg:pl-1/2 lg:ml-auto'} ${index % 2 === 0 ? 'lg:mr-auto' : ''}`}
                 >
-                  {/* Timeline Dot */}
-                  <div className="absolute left-0 right-0 top-6 flex justify-center -mt-1 z-10 lg:left-1/2 lg:-ml-4 lg:right-auto">
+                  {/* Desktop Timeline Dot with Enhanced Effects */}
+                  <div className="absolute left-1/2 top-8 -translate-x-1/2 z-10 lg:block hidden">
                     <motion.div 
-                      className={`w-8 h-8 rounded-full bg-white border-4 flex items-center justify-center shadow-lg ${index % 2 === 0 ? 'border-blue-500' : 'border-purple-500'}`}
-                      whileHover={{ scale: 1.15, rotate: 10 }}
+                      className={`w-10 h-10 rounded-full bg-white border-4 flex items-center justify-center shadow-lg ${
+                        index % 2 === 0 ? 'border-blue-500' : 'border-purple-500'
+                      } relative`}
+                      whileHover={{ scale: 1.2, rotate: 180 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 10, duration: 0.3 }}
                     >
-                      <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${item.color}`}></div>
+                      {/* Inner Dot */}
+                      <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${item.color}`}></div>
+                      {/* Enhanced Glow Effect */}
+                      <motion.div 
+                        className={`absolute inset-0 rounded-full ${
+                          index % 2 === 0 ? 'bg-blue-500/30' : 'bg-purple-500/30'
+                        } blur-md`}
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.3, 0.6, 0.3]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                      {/* Pulsing Ring */}
+                      <motion.div
+                        className={`absolute inset-0 rounded-full border-2 ${
+                          index % 2 === 0 ? 'border-blue-500' : 'border-purple-500'
+                        }`}
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.5, 0, 0.5]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
                     </motion.div>
                   </div>
 
-                  {/* Content Card */}
-                  <div className={`mt-10 relative ${index % 2 === 0 ? 'lg:pr-6' : 'lg:pl-6'}`}>
+                  {/* Mobile Timeline Dot with Enhanced Effects */}
+                  <div className="absolute left-4 top-8 -translate-x-1/2 z-10 lg:hidden">
                     <motion.div 
-                      className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-2xl h-full flex flex-col group/card"
-                      whileHover={{ y: -5 }}
+                      className={`w-8 h-8 rounded-full bg-white border-3 flex items-center justify-center shadow-lg ${
+                        index % 2 === 0 ? 'border-blue-500' : 'border-purple-500'
+                      } relative`}
+                      whileHover={{ scale: 1.2 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 10, duration: 0.3 }}
                     >
-                      {/* Decorative Accent */}
-                      <div className={`h-1.5 w-full ${item.bgColor}`}></div>
+                      {/* Inner Dot */}
+                      <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${item.color}`}></div>
+                      {/* Enhanced Glow Effect */}
+                      <motion.div 
+                        className={`absolute inset-0 rounded-full ${
+                          index % 2 === 0 ? 'bg-blue-500/30' : 'bg-purple-500/30'
+                        } blur-md`}
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.3, 0.6, 0.3]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                      {/* Pulsing Ring */}
+                      <motion.div
+                        className={`absolute inset-0 rounded-full border-2 ${
+                          index % 2 === 0 ? 'border-blue-500' : 'border-purple-500'
+                        }`}
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.5, 0, 0.5]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    </motion.div>
+                  </div>
+
+                  {/* Content Card - Responsive Layout */}
+                  <div className={`relative w-full lg:w-[calc(50%-2rem)] ${
+                    index % 2 === 0 
+                      ? 'lg:mr-auto lg:pr-16' 
+                      : 'lg:ml-auto lg:pl-16'
+                  } pl-12 lg:pl-0`}>
+                    <motion.div 
+                      className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-2xl"
+                      whileHover={{ y: -5, scale: 1.02 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ 
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 20,
+                        duration: 0.5,
+                        delay: index * 0.1 + 0.2
+                      }}
+                    >
+                      {/* Card Header with Gradient */}
+                      <div className={`h-2 w-full ${item.bgColor}`}></div>
                       
-                      {/* Card Content */}
-                      <div className="p-6 flex-1 flex flex-col h-full">
+                      <div className="p-4 sm:p-6">
                         {/* Header with Icon */}
-                        <div className="flex items-start mb-4">
+                        <motion.div 
+                          className="flex items-start mb-4"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ 
+                            type: "spring",
+                            stiffness: 100,
+                            damping: 20,
+                            duration: 0.5,
+                            delay: index * 0.1 + 0.3
+                          }}
+                        >
                           <div className={`p-2.5 rounded-xl shadow-sm mr-4 flex-shrink-0 ${item.bgColor} text-white`}>
                             <item.icon className="w-5 h-5" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex flex-wrap items-center justify-between gap-2">
-                              <h3 className="text-lg font-bold text-gray-900">
+                              <h3 className="text-lg sm:text-xl font-bold text-gray-900 truncate">
                                 {item.title}
                               </h3>
-                              <span className="text-xs font-medium text-gray-500">
+                              <span className="text-sm font-medium text-gray-500 whitespace-nowrap">
                                 {item.company}
                               </span>
                             </div>
@@ -978,31 +1210,73 @@ export default function Page() {
                               {item.date}
                             </div>
                           </div>
-                        </div>
-                        
-                        {/* Description */}
-                        <p className="text-gray-600 text-sm leading-relaxed mt-3 mb-4 line-clamp-3">
+                        </motion.div>
+
+                        {/* Description with Fade In */}
+                        <motion.p 
+                          className="text-gray-600 text-sm leading-relaxed mb-4"
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          transition={{ 
+                            type: "spring",
+                            stiffness: 100,
+                            damping: 20,
+                            duration: 0.5,
+                            delay: index * 0.1 + 0.4
+                          }}
+                        >
                           {item.description}
-                        </p>
-                        
-                        {/* Image Carousel */}
+                        </motion.p>
+
+                        {/* Image Gallery with Slide In - Responsive Grid */}
                         {item.images && item.images.length > 0 && (
-                          <div className="mt-auto mb-4 rounded-xl overflow-hidden border border-gray-100">
-                            <div className="relative h-40 w-full">
+                          <motion.div 
+                            className="mb-4 rounded-xl overflow-hidden border border-gray-100"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ 
+                              type: "spring",
+                              stiffness: 100,
+                              damping: 20,
+                              duration: 0.5,
+                              delay: index * 0.1 + 0.5
+                            }}
+                          >
+                            <div className="relative h-40 sm:h-48 w-full">
                               <ImageCarousel images={item.images} alt={item.title} />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"></div>
                             </div>
-                          </div>
+                          </motion.div>
                         )}
-                        
-                        {/* Tags */}
+
+                        {/* Tags with Stagger - Responsive Layout */}
                         {item.tags && item.tags.length > 0 && (
-                          <div className="mt-3 pt-3 border-t border-gray-100">
+                          <motion.div 
+                            className="mb-4"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ 
+                              type: "spring",
+                              stiffness: 100,
+                              damping: 20,
+                              duration: 0.5,
+                              delay: index * 0.1 + 0.6
+                            }}
+                          >
                             <div className="flex flex-wrap gap-2">
                               {item.tags.map((tag, tagIndex) => (
                                 <motion.span 
                                   key={tagIndex}
-                                  className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-50 text-gray-700 border border-gray-200"
+                                  className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium bg-gray-50 text-gray-700 border border-gray-200"
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  whileInView={{ opacity: 1, scale: 1 }}
+                                  transition={{ 
+                                    type: "spring",
+                                    stiffness: 200,
+                                    damping: 10,
+                                    duration: 0.3,
+                                    delay: index * 0.1 + 0.6 + tagIndex * 0.1
+                                  }}
                                   whileHover={{ 
                                     scale: 1.05, 
                                     backgroundColor: index % 2 === 0 ? 'rgba(59, 130, 246, 0.1)' : 'rgba(139, 92, 246, 0.1)'
@@ -1012,30 +1286,34 @@ export default function Page() {
                                 </motion.span>
                               ))}
                             </div>
-                          </div>
+                          </motion.div>
                         )}
-                        
-                        {/* Stats & CTA */}
-                        <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+
+                        {/* Stats & CTA with Fade In - Responsive Layout */}
+                        <motion.div 
+                          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-4 border-t border-gray-100"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ 
+                            type: "spring",
+                            stiffness: 100,
+                            damping: 20,
+                            duration: 0.5,
+                            delay: index * 0.1 + 0.7
+                          }}
+                        >
                           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700">
                             {item.stats}
                           </span>
-                          <div className="flex items-center space-x-2">
-                           
-                            <motion.button 
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                setSelectedExperience(item);
-                              }}
-                              className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 px-3 py-1.5 rounded-lg hover:bg-blue-50 transition-colors"
-                              whileHover={{ x: 3 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
-                              View Details <ArrowRight className="ml-1 w-3.5 h-3.5" />
-                            </motion.button>
-                          </div>
-                        </div>
+                          <motion.button 
+                            onClick={() => setSelectedExperience(item)}
+                            className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors"
+                            whileHover={{ x: 3 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            View Details <ArrowRight className="ml-1 w-4 h-4" />
+                          </motion.button>
+                        </motion.div>
                       </div>
                     </motion.div>
                   </div>
