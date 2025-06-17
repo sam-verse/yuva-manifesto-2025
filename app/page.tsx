@@ -1111,7 +1111,7 @@ export default function Page() {
   bgColor: "bg-gradient-to-br from-yellow-500 to-yellow-600",
   stats: "120+ students empowered",
   images: [
-    "/images/img1/e11.JPG",
+    "/images/img1/e11.jpg",
     "/images/img1/e12.jpg",
     "/images/img1/e13.jpg",
     "/images/img1/e14.jpg",
@@ -1166,6 +1166,7 @@ export default function Page() {
     "/images/img1/e20.png",
     "/images/img1/e21.png",
     "/images/img1/e22.jpg",
+    "/images/img1/e23.png",
     // "/images/img1/e14.jpg",
   ],
   tags: ["Leadership", "Volunteering", "Youth Empowerment", "Innovation", "Social Impact"],
