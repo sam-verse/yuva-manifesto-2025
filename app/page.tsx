@@ -1011,8 +1011,10 @@ export default function Page() {
                 bgColor: "bg-gradient-to-br from-green-500 to-green-600",
                 stats: "200+ lives impacted",
                 images: [
+                  "/images/img1/e2.JPG",
+                  "/images/img1/e1.jpeg",
                   "/images/Abraham_Samuel_img_2.jpg",
-                  "/images/Abraham_Samuel_Img.jpg"
+                  "/images/img1/e3.JPG"
                 ],
                 tags: [
                   "Leadership",
@@ -1041,8 +1043,12 @@ export default function Page() {
   bgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
   stats: "70% efficiency Increased",
   images: [
-    "/images/Abraham_Samuel_Img.jpg",
-    "/images/Abraham_Samuel_img_2.jpg"
+    "/images/img1/e2.JPG",
+                  "/images/img1/e4.png",
+                  // "/images/img1/e3.JPG",
+                  "/images/img1/e5.png",
+                  "/images/img1/e6.png"
+
   ],
   tags: [
     "Leadership",
@@ -1079,7 +1085,10 @@ export default function Page() {
   bgColor: "bg-gradient-to-br from-red-500 to-red-600",
   stats: "150+ citizens engaged",
   images: [
-    "/images/Abraham_Samuel_Img.jpg"
+    "/images/img1/e7.JPG",
+    "/images/img1/e8.jpg",
+    "/images/img1/e9.jpg",
+    "/images/img1/e10.jpg",
   ],
   tags: ["Awareness Campaign", "Community Action", "Youth Leadership"],
   skills: ["Event Planning", "Public Engagement"],
@@ -1102,7 +1111,10 @@ export default function Page() {
   bgColor: "bg-gradient-to-br from-yellow-500 to-yellow-600",
   stats: "120+ students empowered",
   images: [
-    "/images/Abraham_Samuel_Img.jpg"
+    "/images/img1/e11.JPG",
+    "/images/img1/e12.jpg",
+    "/images/img1/e13.jpg",
+    "/images/img1/e14.jpg",
   ],
   tags: ["Finance", "Education", "Student Development"],
   skills: ["Financial Literacy", "Event Planning", "Public Engagement", "Workshop Facilitation", "Student Outreach"],
@@ -1125,7 +1137,10 @@ export default function Page() {
   bgColor: "bg-gradient-to-br from-indigo-500 to-indigo-700",
   stats: "600+ individuals reached",
   images: [
-    "/images/Abraham_Samuel_Img.jpg"
+    "/images/img1/e19.png",
+    "/images/img1/e16.jpg",
+    "/images/img1/e18.png",
+    "/images/img1/e17.png",
   ],
   tags: ["Award", "Technology", "Cyber Safety", "Youth Leadership"],
   skills: ["Digital Innovation", "Project Leadership", "Tech for Good", "Community Engagement"],
@@ -1148,13 +1163,16 @@ export default function Page() {
   bgColor: "bg-gradient-to-br from-rose-500 to-pink-600",
   stats: "Events Volunteering",
   images: [
-    "/images/Abraham_Samuel_Img.jpg"
+    "/images/img1/e20.png",
+    "/images/img1/e21.png",
+    "/images/img1/e22.jpg",
+    // "/images/img1/e14.jpg",
   ],
   tags: ["Leadership", "Volunteering", "Youth Empowerment", "Innovation", "Social Impact"],
   skills: ["Team Leadership", "Community Building", "Event Coordination", "Purposeful Collaboration", "Public Engagement"],
   highlights: [
-    "Led and volunteered in 4 flagship Yi YUVA events across 10 months",
-    "Enabled outreach to 1000+ individuals through wellness, culture, and sustainability efforts",
+    "Volunteered in 4 flagship Yi YUVA events across 10 months",
+    "Enabled outreach to 500+ individuals through wellness, culture, and sustainability efforts",
     "Blended creativity, compassion, and collaboration to create meaningful impact",
     "Supported large-scale execution of Chennai Got Talent with 65 volunteers"
   ]
