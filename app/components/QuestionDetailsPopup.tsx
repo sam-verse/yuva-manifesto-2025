@@ -322,12 +322,12 @@ export default function QuestionDetailsPopup({
               <div className={`bg-white border-t ${colorSystem.content.border} p-3 sm:p-4 flex justify-end`}>
                 <motion.button
                   onClick={onClose}
-                  className={`bg-gradient-to-r from-${bgColor}-500 to-${bgColor}-600 text-white text-xs sm:text-sm font-medium rounded-lg sm:rounded-xl px-3 sm:px-4 py-1.5 sm:py-2 hover:shadow-lg active:shadow-inner transition-all duration-300 flex items-center gap-1.5`}
+                  className={`bg-gradient-to-r from-${bgColor}-600 to-${bgColor}-700 text-white text-base font-bold rounded-full px-8 py-3 hover:shadow-xl active:shadow-inner transition-all duration-300 flex items-center gap-3 shadow-${bgColor}-500/30`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <span>Close Details</span>
-                  <X size={14} className="w-3.5 h-3.5" />
+                  <X size={20} className="w-5 h-5" />
                 </motion.button>
               </div>
             </motion.div>

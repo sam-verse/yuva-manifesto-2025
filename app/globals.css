@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Google Font - Lora for titles with italic style */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 @keyframes gradient-xy {
   0%,
   100% {
@@ -31,6 +34,11 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .font-lora-italic {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: 800;
   }
 }
 

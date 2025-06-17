@@ -607,9 +607,9 @@ export default function Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <span className="block">"Leadership is not about</span>
+              <span className="block">"Turning blank pages into blueprints</span>
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent block">
-                position, it's about purpose."
+              and blueprints into breakthroughs."
               </span>
             </motion.h1>
 
@@ -619,10 +619,10 @@ export default function Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">Abraham Samuel E</h2>
-              <p className="text-lg sm:text-xl text-blue-600 font-medium">
-                Driving Change Through Purpose & Innovation
-              </p>
+              {/* <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-lora">Abraham Samuel E</h2> */}
+              <h2 className="text-2xl sm:text-3xl text-blue-600 font-bold">
+                Abraham Samuel E
+              </h2>
             </motion.div>
 
             <motion.div
@@ -708,7 +708,7 @@ export default function Page() {
               About Me
             </motion.div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              The Leader Behind the Vision
+            Mind Behind the Movement
             </h2>
           </motion.div>
 
@@ -752,21 +752,21 @@ export default function Page() {
                 {
                   title: "Who Am I?",
                   content:
-                    "I'm Abraham Samuel E, a passionate advocate for youth empowerment and road safety. As an aspiring Senior Council member, I believe in leading by example and creating meaningful impact through collaborative efforts and innovative solutions.",
+                    "I'm Abraham Samuel E — a purpose-driven individual who believes in leading with clarity, curiosity, and compassion. I find energy in solving problems, building connections, and turning ideas into outcomes. Leadership, to me, is not about holding a title — it’s about creating value and inspiring action.",
                   icon: Users,
                   gradient: "from-blue-500 to-blue-600",
                 },
                 {
                   title: "Why Yi-YUVA?",
                   content:
-                    "Yi-YUVA isn't just an organization for me—it's a platform where dreams meet action. The values of coordination, empathy, and impact-driven planning that I've gained here have shaped my leadership philosophy.",
+                    "YUVA is more than an organization — it's a launchpad for growth, collaboration, and real-world impact. It’s where I’ve learned the power of teamwork, strategic thinking, and value-based leadership. Every experience here has shaped not just what I do, but how I lead.",
                   icon: Heart,
                   gradient: "from-red-500 to-pink-600",
                 },
                 {
                   title: "Vision Ahead",
                   content:
-                    "If elected, I envision a Yi-YUVA that's more connected, innovative, and impactful. Through strategic planning and enhanced member engagement, we can amplify our reach and create lasting change.",
+                    "I envision a Yi-YUVA driven by innovation, where technology meets purpose and ideas become action. A space that nurtures collaboration, entrepreneurial thinking, and bold problem-solving.",
                   icon: Lightbulb,
                   gradient: "from-yellow-500 to-orange-600",
                 },
@@ -1671,10 +1671,9 @@ export default function Page() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Technical Excellence & Leadership
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              A powerful combination of cutting-edge technical skills and proven leadership capabilities that drive
-              innovation and team success.
-            </p>
+            <h3 className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto italic">
+              Honing technical and soft skills as a YUVA Junior Council member.
+            </h3>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
@@ -1691,12 +1690,10 @@ export default function Page() {
               </h3>
               <div className="space-y-6">
                 {[
-                  { name: "Kotlin", level: 90, color: "from-purple-500 to-purple-600", icon: "🎯" },
-                  { name: "Firebase", level: 85, color: "from-orange-500 to-red-500", icon: "🔥" },
-                  { name: "Room DB", level: 80, color: "from-green-500 to-emerald-500", icon: "💾" },
-                  { name: "Google Maps API", level: 75, color: "from-blue-500 to-cyan-500", icon: "🗺️" },
-                  { name: "Coroutines", level: 85, color: "from-indigo-500 to-purple-500", icon: "⚡" },
-                  // { name: "Retrofit", level: 80, color: "from-red-500 to-pink-500", icon: "🌐" },
+                  { name: "WEB DEV Stacks", level: 80, color: "from-purple-500 to-indigo-600", icon: "📈" },
+                  { name: "Google Sheets", level: 90, color: "from-green-500 to-green-600", icon: "📊" },
+                  { name: "Git/Github", level: 80, color: "from-blue-500 to-cyan-500", icon: "🗄️" },
+                  { name: "Ai&Automation Tools", level: 85, color: "from-orange-500 to-red-500", icon: "🔗" },
                 ].map((skill, index) => (
                   <motion.div
                     key={skill.name}
@@ -1744,14 +1741,8 @@ export default function Page() {
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { name: "Leadership", icon: Award, color: "text-violet-400 bg-violet-700 border-violet-200", rating: 5 },
-                  {
-                    name: "Public Speaking",
-                    icon: MessageSquare,
-                    color: "text-emerald-400 bg-emerald-700 border-emerald-200",
-                    rating: 4,
-                  },
-                  { name: "Teamwork", icon: Users, color: "text-fuchsia-400 bg-fuchsia-700 border-fuchsia-200", rating: 5 },
+                  { name: "Leadership", icon: Award, color: "text-violet-400 bg-violet-700 border-violet-200", rating: 4 },
+                  { name: "Teamwork", icon: Users, color: "text-fuchsia-400 bg-fuchsia-700 border-fuchsia-200", rating: 4 },
                   {
                     name: "Event Coordination",
                     icon: Calendar,
@@ -1870,10 +1861,10 @@ export default function Page() {
               viewport={{ once: true }}
             >
               {[
-                { name: 'linkedin', icon: <Linkedin className="w-5 h-5" />, color: 'from-blue-500 to-blue-600', hoverColor: 'hover:from-blue-600 hover:to-blue-700', glowColor: 'shadow-[0_0_15px_rgba(59,130,246,0.3)]', url: 'https://linkedin.com/in/abraham-raj' },
-                { name: 'github', icon: <Github className="w-5 h-5" />, color: 'from-gray-700 to-gray-800', hoverColor: 'hover:from-gray-800 hover:to-gray-900', glowColor: 'shadow-[0_0_15px_rgba(31,41,55,0.3)]', url: 'https://github.com/abraham-raj' },
-                { name: 'mail', icon: <Mail className="w-5 h-5" />, color: 'from-amber-400 to-amber-500', hoverColor: 'hover:from-amber-500 hover:to-amber-600', glowColor: 'shadow-[0_0_15px_rgba(245,158,11,0.3)]', url: 'mailto:abrahamraj@gmail.com' },
-                { name: 'instagram', icon: <Instagram className="w-5 h-5" />, color: 'from-pink-500 to-rose-500', hoverColor: 'hover:from-pink-600 hover:to-rose-600', glowColor: 'shadow-[0_0_15px_rgba(236,72,153,0.3)]', url: 'https://instagram.com/abraham_raj' },
+                { name: 'linkedin', icon: <Linkedin className="w-5 h-5" />, color: 'from-blue-500 to-blue-600', hoverColor: 'hover:from-blue-600 hover:to-blue-700', glowColor: 'shadow-[0_0_15px_rgba(59,130,246,0.3)]', url: 'https://linkedin.com/in/abraham-samuel-e' },
+                { name: 'github', icon: <Github className="w-5 h-5" />, color: 'from-gray-700 to-gray-800', hoverColor: 'hover:from-gray-800 hover:to-gray-900', glowColor: 'shadow-[0_0_15px_rgba(31,41,55,0.3)]', url: 'https://github.com/sam-verse' },
+                { name: 'mail', icon: <Mail className="w-5 h-5" />, color: 'from-amber-400 to-amber-500', hoverColor: 'hover:from-amber-500 hover:to-amber-600', glowColor: 'shadow-[0_0_15px_rgba(245,158,11,0.3)]', url: 'mailto:abrahamsamuel562004@gmail.com' },
+                { name: 'instagram', icon: <Instagram className="w-5 h-5" />, color: 'from-pink-500 to-rose-500', hoverColor: 'hover:from-pink-600 hover:to-rose-600', glowColor: 'shadow-[0_0_15px_rgba(236,72,153,0.3)]', url: 'https://instagram.com/abraham._.samuel' },
               ].map((social, index) => (
                 <motion.a
                   key={social.name}
