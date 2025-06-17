@@ -633,18 +633,18 @@ export default function Page() {
             >
               <Button
                 onClick={() => scrollToSection("about")}
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-medium shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+                className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 rounded-full text-lg font-medium shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
               >
-                Discover My Journey
+                My Journey
                 <motion.div
                   className="ml-2"
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
                 >
-                  <ArrowRight size={20} />
+                  <ChevronDown size={30} />
                 </motion.div>
               </Button>
-
+{/* 
               <Button
                 variant="outline"
                 onClick={() => scrollToSection("contact")}
@@ -652,7 +652,7 @@ export default function Page() {
               >
                 Let's Connect
                 <MessageSquare className="ml-2 group-hover:scale-110 transition-transform" size={20} />
-              </Button>
+              </Button> */}
             </motion.div>
           </motion.div>
         </div>
@@ -766,7 +766,7 @@ export default function Page() {
                 {
                   title: "Vision Ahead",
                   content:
-                    "I envision a Yi-YUVA driven by innovation, where technology meets purpose and ideas become action. A space that nurtures collaboration, entrepreneurial thinking, and bold problem-solving.",
+                    "I envision a YUVA REC driven by innovation, where technology meets purpose and ideas become action. A space that nurtures collaboration, entrepreneurial thinking, and bold problem-solving.",
                   icon: Lightbulb,
                   gradient: "from-yellow-500 to-orange-600",
                 },
@@ -1587,7 +1587,7 @@ export default function Page() {
               },
               {
                 title: "Vision & Goals for Upcoming Council",
-                content: "I envision a more digitally integrated Yi-YUVA with enhanced member engagement platforms.",
+                content: "I envision a more digitally integrated Yi-YUVA REC with enhanced member engagement platforms.",
                 details: "Looking ahead, I'm excited about the potential to transform Yi-YUVA into a more digitally integrated organization. My vision includes implementing member engagement platforms that facilitate better communication and collaboration. I aim to expand our community outreach programs, making them more accessible through technology. Another key focus will be on developing innovative approaches to road safety education that leverage emerging technologies. My goal is to create sustainable programs that continue to deliver value long after my term ends.",
                 icon: Target,
                 gradient: "from-indigo-500 via-indigo-600 to-indigo-500",
