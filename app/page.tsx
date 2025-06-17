@@ -7,7 +7,7 @@ import {
   Menu, ChevronLeft, ChevronRight, Mail, Phone, MapPin, Star, Target, Heart, Zap, MessageSquare, 
   TrendingUp, BarChart2, Cpu, Database, Server, Wifi, Shield, Clock, CheckCircle, Users as UsersIcon, 
   ArrowUpRight, Sparkles, X, ArrowRight, ChevronDown, ChevronUp, ExternalLink, Github, Twitter, 
-  FileText, Tags, Image as ImageIcon
+  FileText, Tags, Image as ImageIcon, Wallet
 } from "lucide-react"
 import dynamic from 'next/dynamic'
 import { Button } from "@/components/ui/button"
@@ -752,14 +752,14 @@ export default function Page() {
                 {
                   title: "Who Am I?",
                   content:
-                    "I'm Abraham Samuel E — a purpose-driven individual who believes in leading with clarity, curiosity, and compassion. I find energy in solving problems, building connections, and turning ideas into outcomes. Leadership, to me, is not about holding a title — it’s about creating value and inspiring action.",
+                    "I'm Abraham Samuel E — a purpose-driven individual who believes in leading with clarity, curiosity, and compassion. I find energy in solving problems, building connections, and turning ideas into outcomes. Leadership, to me, is not about holding a title — it's about creating value and inspiring action.",
                   icon: Users,
                   gradient: "from-blue-500 to-blue-600",
                 },
                 {
                   title: "Why Yi-YUVA?",
                   content:
-                    "YUVA is more than an organization — it's a launchpad for growth, collaboration, and real-world impact. It’s where I’ve learned the power of teamwork, strategic thinking, and value-based leadership. Every experience here has shaped not just what I do, but how I lead.",
+                    "YUVA is more than an organization — it's a launchpad for growth, collaboration, and real-world impact. It's where I've learned the power of teamwork, strategic thinking, and value-based leadership. Every experience here has shaped not just what I do, but how I lead.",
                   icon: Heart,
                   gradient: "from-red-500 to-pink-600",
                 },
@@ -1000,96 +1000,169 @@ export default function Page() {
 
             <div className="space-y-16">
               {[
+               {
+                title: "Co-Chair – Road Safety",
+                date: "2024 – 2025",
+                company: "Yi-YUVA REC",
+                description: "Led impactful road safety campaigns reaching over 200+ people, combining strategic outreach with community-centered education.",
+                details: "As Co-Chair of the Road Safety vertical at Yi-YUVA REC, I designed and executed large-scale awareness programs using data-driven planning and local partnerships. I worked closely with authorities and groups to roll out targeted interventions including rally, digital surveys.",
+                icon: Award,
+                color: "from-green-500 to-green-600",
+                bgColor: "bg-gradient-to-br from-green-500 to-green-600",
+                stats: "200+ lives impacted",
+                images: [
+                  "/images/Abraham_Samuel_img_2.jpg",
+                  "/images/Abraham_Samuel_Img.jpg"
+                ],
+                tags: [
+                  "Leadership",
+                  "Community Impact"
+                ],
+                skills: [
+                  "Program Strategy",
+                  "Stakeholder Engagement",
+                  "People Handling"
+                ],
+                highlights: [
+                  "Led a Survey for Yi-Chennai Chapter Road-Safety Vertical",
+                  "Conducted a Road Rally for spreading the awarness on Underage Driving and it's Cons "
+                  // "Created educational resources used by 20+ schools"
+                ]
+              },
+              
+               {
+  title: "MIS Team Lead",
+  date: "2023 – Present",
+  company: "Yi-YUVA",
+  description: "Led the MIS team to improve how we collect, manage, and use data and manage the Club's Website— making things faster, clearer, and smarter for everyone.",
+  details: "At Yi-YUVAREC, I led a team of 3 to simplify and upgrade our digital systems. My work focused on making processes smoother, building better, Eye-Catching Visuals by code and  make decisions with the right information at the right time. I initiated and developed engaging event websites for Route Cause, Her Rhythm Within, and e-cycle, significantly boosting event registrations through user-friendly interfaces and compelling visual design with my team.",
+  icon: Code,
+  color: "from-blue-500 to-blue-600",
+  bgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
+  stats: "70% efficiency Increased",
+  images: [
+    "/images/Abraham_Samuel_Img.jpg",
+    "/images/Abraham_Samuel_img_2.jpg"
+  ],
+  tags: [
+    "Leadership",
+    "Data Managment",
+    "Innovative Thinking",
+    "Web Development"
+  ],
+  skills: [
+    "Team Leadership",
+    "Problem Solving",
+    "AI Tools",
+    "Project Planning",
+    "Automation",
+    "Web Development",
+    "UI/UX Design"
+  ],
+  highlights: [
+    "Led a team of 3 to deliver digital upgrades on time",
+    "Made reporting 70% faster with AI tools",
+    "Developed engaging event websites that increased registrations with the team",
+    "Trained team members, boosting overall productivity by 50%"
+  ]
+},
+
+                
+              {
+  title: "Route Cause – Underage Driving Awarness Rally",
+  date: "May 11, 2025",
+  company: "Yi-YUVA",
+  description: "Led Route Cause, a silent awareness rally to stand against underage driving, bringing together citizens, youth, and local authorities in a powerful community movement.",
+  details: "On May 11th, 2025, Yi-YUVA organized 'Route Cause' at Edward Elliot's Beach — a rally that united people to raise their voice against underage driving. Starting near Murugan Idli Shop, participants walked in silence, holding placards with strong messages. Their quiet presence created a loud impact. The event ended with heartfelt pledges, signatures on a pledge wall, and support from the local police. Reflective stickers were shared as a symbol of safety and awareness. It was more than a rally — it was a reminder that road safety starts with responsibility.",
+  icon: Calendar,
+  color: "from-red-500 to-red-600",
+  bgColor: "bg-gradient-to-br from-red-500 to-red-600",
+  stats: "150+ citizens engaged",
+  images: [
+    "/images/Abraham_Samuel_Img.jpg"
+  ],
+  tags: ["Awareness Campaign", "Community Action", "Youth Leadership"],
+  skills: ["Event Planning", "Public Engagement"],
+  highlights: [
+    "Organized a community rally with strong local participation",
+    "Collaborated with police and civic leaders for outreach",
+    "Led public pledge against underage driving",
+    "Distributed safety materials like Reflective Stickers to promote responsible driving"
+  ]
+},
+
                 {
-                  title: "MIS Team Lead",
-                  date: "2023 - Present",
-                  company: "Yi-YUVA",
-                  description: "Led the Management Information Systems team, streamlining data processes and improving organizational efficiency through innovative digital solutions.",
-                  details: "As the MIS Team Lead at Yi-YUVA, I spearheaded the digital transformation initiatives that revolutionized our data management systems. I led a cross-functional team to implement cutting-edge solutions that improved data accuracy by 45% and reduced reporting time by 60%. My role involved strategic planning, system architecture design, and stakeholder management to ensure seamless integration of new technologies.",
-                  icon: Code,
-                  color: "from-blue-500 to-blue-600",
-                  bgColor: "bg-gradient-to-br from-blue-500 to-blue-600",
-                  stats: "Improved efficiency by 40%",
-                  images: [
-                    "/images/Abraham_Samuel_Img.jpg",
-                    "/images/Abraham_Samuel_img_2.jpg"
-                  ],
-                  tags: ["Leadership", "Data Management", "Process Improvement"],
-                  skills: ["Project Management", "Data Analytics", "System Architecture", "Team Leadership", "Process Optimization"],
-                  highlights: [
-                    "Led a team of 8 developers and analysts to deliver complex projects on time",
-                    "Reduced data processing time by 60% through automation",
-                    "Implemented new reporting system that improved decision-making accuracy by 45%",
-                    "Mentored junior team members, improving team productivity by 30%"
-                  ]
-                },
-                {
-                  title: "Co-Chair - Road Safety",
-                  date: "2022 - 2023",
-                  company: "Yi-YUVA",
-                  description: "Spearheaded road safety initiatives, organizing awareness campaigns and educational programs that reached over 5000+ community members.",
-                  details: "As Co-Chair of the Road Safety initiative, I led a comprehensive program that significantly improved road safety awareness in our community. I collaborated with local authorities, schools, and businesses to implement safety measures and educational programs. Our initiatives included community workshops, school programs, and public awareness campaigns that resulted in a 30% reduction in road accidents in our target areas.",
-                  icon: Award,
-                  color: "from-green-500 to-green-600",
-                  bgColor: "bg-gradient-to-br from-green-500 to-green-600",
-                  stats: "5000+ people impacted",
-                  images: [
-                    "/images/Abraham_Samuel_img_2.jpg",
-                    "/images/Abraham_Samuel_Img.jpg"
-                  ],
-                  tags: ["Community Engagement", "Public Safety", "Leadership"],
-                  skills: ["Public Speaking", "Community Outreach", "Program Management", "Stakeholder Engagement", "Event Planning"],
-                  highlights: [
-                    "Organized 15+ community workshops on road safety",
-                    "Reduced road accidents by 30% in target areas",
-                    "Established partnerships with 10+ local organizations",
-                    "Developed educational materials used by 20+ schools"
-                  ]
-                },
-                {
-                  title: "Road Revive 1.0",
-                  date: "2021 - 2022",
-                  company: "Yi-YUVA",
-                  description: "Actively participated in this flagship event, contributing to innovative road safety awareness strategies and community engagement initiatives.",
-                  details: "Road Revive 1.0 was a landmark event that brought together experts, community leaders, and citizens to address road safety challenges. As a key organizer, I was responsible for program development, speaker coordination, and participant engagement. The event featured interactive workshops, expert panels, and practical demonstrations that educated attendees on safe driving practices and pedestrian safety.",
-                  icon: Calendar,
-                  color: "from-purple-500 to-purple-600",
-                  bgColor: "bg-gradient-to-br from-purple-500 to-purple-600",
-                  stats: "Major event success",
-                  images: [
-                    "/images/Abraham_Samuel_Img.jpg"
-                  ],
-                  tags: ["Event Management", "Workshops", "Community Outreach"],
-                  skills: ["Event Planning", "Public Speaking", "Workshop Facilitation", "Community Engagement", "Logistics Management"],
-                  highlights: [
-                    "Coordinated a successful event with 500+ attendees",
-                    "Facilitated 8 interactive workshops",
-                    "Secured sponsorship from 5 major organizations",
-                    "Received positive feedback from 95% of participants"
-                  ]
-                },
-                {
-                  title: "Enlighten the Enroute 1.0",
-                  date: "2020 - 2021",
-                  company: "Yi-YUVA",
-                  description: "Led the organization and execution of this educational initiative, creating lasting impact through structured learning and awareness programs.",
-                  details: "Enlighten the Enroute was an educational initiative aimed at promoting road safety awareness among school children and young adults. As the program lead, I developed the curriculum, trained volunteers, and coordinated with educational institutions. The program combined classroom learning with practical activities, reaching over 1000 students across 15 schools in its first year.",
-                  icon: Lightbulb,
-                  color: "from-orange-500 to-orange-600",
-                  bgColor: "bg-gradient-to-br from-orange-500 to-orange-600",
-                  stats: "1000+ participants",
-                  images: [
-                    "/images/Abraham_Samuel_img_2.jpg"
-                  ],
-                  tags: ["Education", "Training", "Program Development"],
-                  skills: ["Curriculum Development", "Training Delivery", "Program Design", "Educational Content Creation", "Volunteer Management"],
-                  highlights: [
-                    "Developed comprehensive road safety curriculum",
-                    "Trained 50+ volunteers as program facilitators",
-                    "Expanded program to 15 schools in first year",
-                    "Achieved 92% satisfaction rate from participants"
-                  ]
-                },
+  title: "FinFluent",
+  date: "28th March 2025",
+  company: "Yi-YUVA",
+  description: "Organized a personal finance workshop that helped college students understand money management and future wealth planning in a simple, relatable way.",
+  details: "FinFluent was an interactive offline session focused on helping students take control of their personal finances. Held at Rajalakshmi Engineering College, the workshop featured Dr. M. Pattabiraman, a personal finance expert from IIT Madras. He broke down key financial concepts and shared practical advice on building wealth, automating investments, and making smart money decisions. The session titled 'How to Become a Crorepati on Auto-Pilot?' attracted 200+ students and ended with a lively Q&A where participants got answers to their real-life financial questions. The event gave students the tools and motivation to start thinking seriously about their financial future.",
+  icon: Wallet,
+  color: "from-yellow-500 to-yellow-600",
+  bgColor: "bg-gradient-to-br from-yellow-500 to-yellow-600",
+  stats: "120+ students empowered",
+  images: [
+    "/images/Abraham_Samuel_Img.jpg"
+  ],
+  tags: ["Finance", "Education", "Student Development"],
+  skills: ["Financial Literacy", "Event Planning", "Public Engagement", "Workshop Facilitation", "Student Outreach"],
+  highlights: [
+    "Hosted a workshop attended by 120+ students",
+    "Featured expert speaker from IIT Madras",
+    "Delivered actionable strategies for personal wealth building",
+    "Helped students understand the basics of investing and automation"
+  ]
+},
+
+{
+  title: "Yi Chennai Annual Day 2024",
+  date: "7th December 2024",
+  company: "Yi-YUVA",
+  description: "Celebrated a year of impact and innovation at Yi Chennai's Annual Day, where I was honored with the Yi YUVA Champion Award for leading the Digital Safety Audit initiative taken by 600+ users nationwide.",
+  details: "Held at The Westin, Velachery, the Annual Day recognized outstanding contributions from Yi members. The event included the annual report presentation, introduction of the new Executive Council, and awards ceremony. Our college received recognition for impactful activities, particularly for the Digital Safety Audit — a project aimed at promoting safer online spaces. I was honored with the Yi YUVA Champion Award for my key role in developing and scaling the platform, which was completed by over 600 users across India. The night celebrated leadership, collaboration, and innovation in action.",
+  icon: Award,
+  color: "from-indigo-500 to-indigo-700",
+  bgColor: "bg-gradient-to-br from-indigo-500 to-indigo-700",
+  stats: "600+ individuals reached",
+  images: [
+    "/images/Abraham_Samuel_Img.jpg"
+  ],
+  tags: ["Award", "Technology", "Cyber Safety", "Youth Leadership"],
+  skills: ["Digital Innovation", "Project Leadership", "Tech for Good", "Community Engagement"],
+  highlights: [
+    "Awarded Yi YUVA Champion for leading the Digital Safety Audit project",
+    "Audit completed by 600+ people nationwide",
+    "Recognized for building a platform that fosters safer digital environments",
+    "Represented my college in a high-impact, nationally acknowledged initiative"
+  ]
+},
+
+{
+  title: "Volunteering in YUVA Events",
+  date: "2024 – 2025",
+  company: "Yi-YUVA REC",
+  description: "Actively led, volunteered, and collaborated in impactful YUVAREC events that blended creativity, tech, social change, and community growth.",
+  details: "Across the 2024–25 term, I was deeply involved in multiple Yi YUVA flagship events — from leading boards to coordinating on-ground efforts. I contributed to Varies Events like 'Her Rhythm Within', 'Smash 3.0', 'Akshaya Patra 4.0', 'Chennai Got Talent 5.0'. These events shaped my journey in leadership, teamwork, innovation, and purpose-driven action.",
+  icon: Users,
+  color: "from-rose-500 to-pink-600",
+  bgColor: "bg-gradient-to-br from-rose-500 to-pink-600",
+  stats: "Events Volunteering",
+  images: [
+    "/images/Abraham_Samuel_Img.jpg"
+  ],
+  tags: ["Leadership", "Volunteering", "Youth Empowerment", "Innovation", "Social Impact"],
+  skills: ["Team Leadership", "Community Building", "Event Coordination", "Purposeful Collaboration", "Public Engagement"],
+  highlights: [
+    "Led and volunteered in 4 flagship Yi YUVA events across 10 months",
+    "Enabled outreach to 1000+ individuals through wellness, culture, and sustainability efforts",
+    "Blended creativity, compassion, and collaboration to create meaningful impact",
+    "Supported large-scale execution of Chennai Got Talent with 65 volunteers"
+  ]
+}
+
+
+
+
               ].map((item, index) => (
                 <motion.div 
                   key={index}

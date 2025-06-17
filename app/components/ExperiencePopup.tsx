@@ -446,7 +446,7 @@ export default function ExperiencePopup({ experience, isOpen, onClose }: Experie
                 <div className="mb-8">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                     <span className="w-1.5 h-5 bg-purple-500 rounded-full mr-2"></span>
-                    Technologies Used
+                    Skills Learned
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {experience.skills.map((skill, idx) => (
