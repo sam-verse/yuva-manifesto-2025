@@ -7,7 +7,7 @@ import {
   Menu, ChevronLeft, ChevronRight, Mail, Phone, MapPin, Star, Target, Heart, Zap, MessageSquare, 
   TrendingUp, BarChart2, Cpu, Database, Server, Wifi, Shield, Clock, CheckCircle, Users as UsersIcon, 
   ArrowUpRight, Sparkles, X, ArrowRight, ChevronDown, ChevronUp, ExternalLink, Github, Twitter, 
-  FileText, Tags
+  FileText, Tags, Image as ImageIcon
 } from "lucide-react"
 import dynamic from 'next/dynamic'
 import { Button } from "@/components/ui/button"
@@ -342,7 +342,7 @@ export default function Page() {
             {experience.images && experience.images.length > 0 && (
               <div className="mb-6">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                  <Image className={`w-5 h-5 ${colors.icon}`} />
+                  <ImageIcon className={`w-5 h-5 ${colors.icon}`} />
                   Gallery
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -452,12 +452,13 @@ export default function Page() {
             title={selectedQuestion.title}
             content={selectedQuestion.content}
             details={selectedQuestion.details}
-            stats={selectedQuestion.stats}
+            stats={selectedQuestion.statsText}
             gradient={selectedQuestion.gradient}
             emoji={selectedQuestion.emoji}
             images={selectedQuestion.images}
             statsColorClass={selectedQuestion.statsColorClass || "text-blue-600 dark:text-blue-400"}
             experienced={selectedQuestion.experienced || false}
+            bgColor={selectedQuestion.bgColor || selectedQuestion.cardColor?.split(' ')[0]?.replace('bg-', '').split('-')[0] || 'blue'}
           />
         )}
       </AnimatePresence>
@@ -1450,6 +1451,9 @@ export default function Page() {
                 content: "My most treasured memory is seeing the impact of our Road Revive 1.0 event on local communities.",
                 details: "The Road Revive 1.0 event stands out as a defining moment in my Yi-YUVA journey. Witnessing firsthand how our efforts translated into real behavioral changes in road safety practices was incredibly rewarding. The event brought together community members, local authorities, and our team in a collaborative effort to make our roads safer. The positive feedback we received from participants and the visible impact on road safety awareness in the following months reinforced my commitment to this cause.",
                 icon: Heart,
+                // gradient: "from-rose-500 via-rose-600 to-rose-500",
+                // cardColor: "bg-rose-100/70 border-rose-300",
+                // iconColor: "bg-rose-500",
                 gradient: "from-rose-500 via-rose-600 to-rose-500",
                 cardColor: "bg-rose-100/70 border-rose-300",
                 iconColor: "bg-rose-500",
@@ -1471,6 +1475,7 @@ export default function Page() {
                 statsColor: "bg-amber-50 text-amber-700 border-amber-200",
                 statsText: "Key Learnings",
                 emoji: "💡",
+                bgColor: "amber",
                 images: []
               },
               {
@@ -1605,10 +1610,10 @@ export default function Page() {
                     
                     <div className="mt-auto pt-4 border-t border-gray-200/50 flex items-center justify-between">
                       {/* Enhanced button with shine */}
-                      <motion.button
+                      <motion.button    
                         onClick={(e) => {
                           e.stopPropagation();
-                          console.log("Setting selectedQuestion with statsText:", item.statsText);
+                          // console.log("Setting selectedQuestion with statsText:", item.statsText);
                           setSelectedQuestion(item);
                         }}
                         className="flex items-center text-sm font-semibold text-blue-700 hover:text-blue-900 px-5 py-2 rounded-xl hover:bg-blue-100/80 transition-all duration-500 group/readmore hover:shadow-lg relative overflow-hidden"
