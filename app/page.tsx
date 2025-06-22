@@ -1001,8 +1001,8 @@ export default function Page() {
             <div className="space-y-16">
               {[
                {
-                title: "Co-Chair – Road Safety",
-                date: "2024 – 2025",
+                title: "Co-Chair - Road Safety",
+                date: "2024 - 2025",
                 company: "Yi-YUVA REC",
                 description: "Led impactful road safety campaigns reaching over 200+ people, combining strategic outreach with community-centered education.",
                 details: "As Co-Chair of the Road Safety vertical at Yi-YUVA REC, I designed and executed large-scale awareness programs using data-driven planning and local partnerships. I worked closely with authorities and groups to roll out targeted interventions including rally, digital surveys.",
@@ -1034,7 +1034,7 @@ export default function Page() {
               
                {
   title: "MIS Team Lead",
-  date: "2023 – Present",
+  date: "2023 - Present",
   company: "Yi-YUVA",
   description: "Led the MIS team to improve how we collect, manage, and use data and manage the Club's Website— making things faster, clearer, and smarter for everyone.",
   details: "At Yi-YUVAREC, I led a team of 3 to simplify and upgrade our digital systems. My work focused on making processes smoother, building better, Eye-Catching Visuals by code and  make decisions with the right information at the right time. I initiated and developed engaging event websites for Route Cause, Her Rhythm Within, and e-cycle, significantly boosting event registrations through user-friendly interfaces and compelling visual design with my team.",
@@ -1075,7 +1075,7 @@ export default function Page() {
 
                 
               {
-  title: "Route Cause – Underage Driving Awarness Rally",
+  title: "Route Cause - Underage Driving Awarness Rally",
   date: "May 11, 2025",
   company: "Yi-YUVA",
   description: "Led Route Cause, a silent awareness rally to stand against underage driving, bringing together citizens, youth, and local authorities in a powerful community movement.",
@@ -1154,10 +1154,10 @@ export default function Page() {
 
 {
   title: "Volunteering in YUVA Events",
-  date: "2024 – 2025",
+  date: "2024 - 2025",
   company: "Yi-YUVA REC",
   description: "Actively led, volunteered, and collaborated in impactful YUVAREC events that blended creativity, tech, social change, and community growth.",
-  details: "Across the 2024–25 term, I was deeply involved in multiple Yi YUVA flagship events — from leading boards to coordinating on-ground efforts. I contributed to Varies Events like 'Her Rhythm Within', 'Smash 3.0', 'Akshaya Patra 4.0', 'Chennai Got Talent 5.0'. These events shaped my journey in leadership, teamwork, innovation, and purpose-driven action.",
+  details: "Across the 2024-25 term, I was deeply involved in multiple Yi YUVA flagship events — from leading boards to coordinating on-ground efforts. I contributed to Varies Events like 'Her Rhythm Within', 'Smash 3.0', 'Akshaya Patra 4.0', 'Chennai Got Talent 5.0'. These events shaped my journey in leadership, teamwork, innovation, and purpose-driven action.",
   icon: Users,
   color: "from-rose-500 to-pink-600",
   bgColor: "bg-gradient-to-br from-rose-500 to-pink-600",
@@ -1508,40 +1508,44 @@ export default function Page() {
             {[
               {
                 title: "Personal Summary as Junior Council Member",
-                content: "As a Junior Council member, I focused on building strong foundations in teamwork, communication, and project management.",
-                details: "During my tenure as a Junior Council member, I was deeply involved in various initiatives that helped me develop essential leadership skills. I learned the importance of active listening, effective communication, and collaborative problem-solving. My experience in organizing community events and managing team dynamics has been invaluable in shaping my approach to leadership. I was particularly proud of our team's ability to work together to overcome challenges and achieve our collective goals.",
+                content: "YUVA is the place that believed in me before I believed in myself. It's where I stumbled, grew, led and found not just a team, but a family that changed my life.",
+                details: "I still remember how it all started with a message 'Hi Abraham, congrats on getting selected for the board recruitment of YI YUVA REC' from Thrisha Akka. I never thought that clicking on that would lead to one of the most meaningful journeys of my life. Being part of YUVA-REC helped me find parts of myself I didn't know existed.\n\nFrom being someone who used to shy away from conversations and stages, I became someone who now leads a team, organizes events, and shares what I know with confidence and care. What really changed me was the belief others had in me, especially when I moved from board member to council. I didn't think I was the best, but they saw something in me and gave me a chance. That moment gave me the courage to step up, open up, and grow, not just as a leader, but as a person.\n\nYUVA isn't just a club for me. It's a space that turned strangers into family, fears into strength, and small steps into big leaps. Every moment with YUVA is close to my heart, and I carry it with me in everything I do.",
                 icon: Users,
                 gradient: "from-blue-500 via-blue-600 to-blue-500",
                 cardColor: "bg-blue-100/70 border-blue-300",
                 iconColor: "bg-blue-500",
                 statsColor: "bg-blue-50 text-blue-700 border-blue-200",
-                statsText: "2+ Years Experience",
+                statsText: "Home",
                 emoji: "🌟",
                 images: [
-                  "/images/Abraham_Samuel_Img.jpg",
-                  "/images/Abraham_Samuel_img_2.jpg"
+                  "/images/img1/e19.png",
+                  "/images/img1/e10.jpg",
+                  "/images/img1/e20.png",
+                  "/images/img1/e23.jpg"
+                  
+                  
                 ]
               },
+              // {
+              //   title: "Summary as Co-Chair & MIS Lead",
+              //   content: "Leading the MIS team and serving as Co-Chair for Road Safety taught me the balance between technical expertise and people management.",
+              //   details: "As Co-Chair and MIS Lead, I successfully streamlined our organization's data management processes while fostering a positive team environment. I implemented new project management tools that improved our efficiency by 40% and reduced response times for data requests. My role required me to bridge the gap between technical and non-technical team members, ensuring smooth communication and understanding across all levels of the organization. I'm particularly proud of how our team came together to overcome challenges and deliver exceptional results.",
+              //   icon: Award,
+              //   gradient: "from-green-500 via-green-600 to-green-500",
+              //   cardColor: "bg-green-100/70 border-green-300",
+              //   iconColor: "bg-green-500",
+              //   statsColor: "bg-green-50 text-green-700 border-green-200",
+              //   statsText: "Team of 15+",
+              //   emoji: "🚀",
+              //   images: [
+              //     "/images/Abraham_Samuel_Img.jpg",
+              //     "/images/Abraham_Samuel_img_2.jpg"
+              //   ]
+              // },
               {
-                title: "Summary as Co-Chair & MIS Lead",
-                content: "Leading the MIS team and serving as Co-Chair for Road Safety taught me the balance between technical expertise and people management.",
-                details: "As Co-Chair and MIS Lead, I successfully streamlined our organization's data management processes while fostering a positive team environment. I implemented new project management tools that improved our efficiency by 40% and reduced response times for data requests. My role required me to bridge the gap between technical and non-technical team members, ensuring smooth communication and understanding across all levels of the organization. I'm particularly proud of how our team came together to overcome challenges and deliver exceptional results.",
-                icon: Award,
-                gradient: "from-green-500 via-green-600 to-green-500",
-                cardColor: "bg-green-100/70 border-green-300",
-                iconColor: "bg-green-500",
-                statsColor: "bg-green-50 text-green-700 border-green-200",
-                statsText: "Team of 15+",
-                emoji: "🚀",
-                images: [
-                  "/images/Abraham_Samuel_Img.jpg",
-                  "/images/Abraham_Samuel_img_2.jpg"
-                ]
-              },
-              {
-                title: "Treasured Memory in Yi-YUVA",
-                content: "My most treasured memory is seeing the impact of our Road Revive 1.0 event on local communities.",
-                details: "The Road Revive 1.0 event stands out as a defining moment in my Yi-YUVA journey. Witnessing firsthand how our efforts translated into real behavioral changes in road safety practices was incredibly rewarding. The event brought together community members, local authorities, and our team in a collaborative effort to make our roads safer. The positive feedback we received from participants and the visible impact on road safety awareness in the following months reinforced my commitment to this cause.",
+                title: "Treasured Memory in YUVA-REC",
+                content: "Akshaya Patra 3.0 was the first time I truly felt part of something bigger.From shared laughter in the cooking to the joy of giving, every moment became a memory to cherish.",
+                details: "Akshaya Patra 3.0 will always be close to my heart. It was the first outdoor event I attended after joining YUVA and everything about it felt new, exciting and unforgettable.\n\nFrom cutting and sorting vegetables to the endless chit chats in between, every small moment made me feel truly involved. It was the first time I got to open up and connect with so many fellow board members and councils.\n\nI still smile thinking about how we poured too much water into the raita and tried to fix it with extra curd, and how we packed the food into large boxes and loaded them into the car, laughing and figuring things out together. Even though the distribution didn't go exactly as we planned, the moment I handed a biryani parcel to a patti and saw her cheerful face, I felt something pure. That joy the kind that comes from giving with love stayed with me. This memory is more than an event. It's a moment where I felt purpose.",
                 icon: Heart,
                 // gradient: "from-rose-500 via-rose-600 to-rose-500",
                 // cardColor: "bg-rose-100/70 border-rose-300",
@@ -1550,16 +1554,14 @@ export default function Page() {
                 cardColor: "bg-rose-100/70 border-rose-300",
                 iconColor: "bg-rose-500",
                 statsColor: "bg-rose-50 text-rose-700 border-rose-200",
-                statsText: "Life-changing",
+                statsText: "Never-Fading",
                 emoji: "💖",
-                images: [
-                  "/images/Abraham_Samuel_Img.jpg"
-                ]
+            
               },
               {
                 title: "Takeaways from Current Council",
-                content: "The current council has shown me the power of collaborative leadership and strategic thinking.",
-                details: "Serving on the current council has been an incredible learning experience that has shaped my leadership philosophy. I've come to understand that effective governance requires a delicate balance between vision and execution. The importance of data-driven decision making, transparent communication, and continuous engagement with all stakeholders cannot be overstated. I've also learned valuable lessons about conflict resolution, team motivation, and the power of diverse perspectives in problem-solving.",
+                content: "The current council taught me the true meaning of teamwork, coordination and personal encouragement. They were not just leaders but a strong support system in every situation.",
+                details: "The biggest takeaways I've learned from the current council is how well they coordinate with each other. Whether it's planning an event or figuring out what to do next, everything just happens so smoothly. If I ever got stuck or didn't know what to do, there was always someone to guide me or help me out without any hesitation. That kind of support really meant a lot.\n\nWhat I loved most was that the council was always backing each other up. If someone couldn't make it, another person would jump in right away and handle it like it was their own. It never felt like just a team. It felt like people who genuinely cared. And it wasn't only about the club. Even personally, they were always around to check in, motivate and lift us up when needed.\n\nThis council honestly felt more like a support system than just a group of leaders. They kept things running, made everyone feel included and always stood by each other. I've learned a lot by just being around them. Things like how to show up for people, how to stay united during tough times and how important it is to care for each other beyond roles or positions. These are lessons I'll always carry with me.",
                 icon: Lightbulb,
                 gradient: "from-amber-400 via-amber-500 to-amber-400",
                 cardColor: "bg-amber-100/70 border-amber-300",
@@ -1572,14 +1574,14 @@ export default function Page() {
               },
               {
                 title: "Contributions Made",
-                content: "Technical leadership in MIS, strategic planning for road safety campaigns, and mentoring newer members.",
-                details: "My contributions to Yi-YUVA have been diverse and impactful. As MIS Lead, I've overseen the digital transformation of our data management systems, resulting in improved efficiency and accessibility. I've played a key role in strategic planning for our road safety campaigns, ensuring they're both impactful and measurable. Mentoring newer members has been particularly rewarding, as I've been able to share my knowledge while learning from fresh perspectives. Each contribution has been a building block in strengthening our organization's capacity to serve the community.",
+                content: "Over the past year I’ve given my full effort to every YUVA event and initiative. From leading impactful projects to quietly helping behind the scenes every contribution has helped me grow and shaped the journey of others too.",
+                details: "Being part of YUVA gave me a chance to contribute across many areas. I led and co-organized events like Route Cause, a silent awareness rally that brought together people to stand against underage driving. I also been a Council lead in FinFluent, a personal finance workshop that made complex money matters feel simple and practical for over 100 students. It was special to see students walk out of that room with clarity and confidence.Another proud moment was receiving the Yi YUVA Champion Award during Yi Chennai Annual Day for building and leading the Digital Safety Audit, a project that reached over 600 people across India. That platform was close to my heart because it aimed at making the internet a safer space. Apart from these, I was constantly involved in volunteering and supporting our flagship events like Her Rhythm Within, Akshaya Patra, Chennai Got Talent and more. Also I'm handling the MIS team  and managing the forms, website and the datas.Every small and big moment added something meaningful. Whether it was writing a code or  designing a slide coordinating teams or guiding others I gave my best with heart and intention. YUVA became a space where I could express lead support and grow.",
                 icon: Star,
                 gradient: "from-purple-500 via-purple-600 to-purple-500",
                 cardColor: "bg-purple-100/70 border-purple-300",
                 iconColor: "bg-purple-500",
                 statsColor: "bg-purple-50 text-purple-700 border-purple-200",
-                statsText: "Multi-faceted",
+                statsText: "learning & Teaching",
                 emoji: "✨",
                 images: [
                   "/images/Abraham_Samuel_Img.jpg",
@@ -1588,8 +1590,8 @@ export default function Page() {
               },
               {
                 title: "Vision & Goals for Upcoming Council",
-                content: "I envision a more digitally integrated Yi-YUVA REC with enhanced member engagement platforms.",
-                details: "Looking ahead, I'm excited about the potential to transform Yi-YUVA into a more digitally integrated organization. My vision includes implementing member engagement platforms that facilitate better communication and collaboration. I aim to expand our community outreach programs, making them more accessible through technology. Another key focus will be on developing innovative approaches to road safety education that leverage emerging technologies. My goal is to create sustainable programs that continue to deliver value long after my term ends.",
+                content: "In my upcoming role as a Senior Council member, I aim to be a guide and support system for the junior council and boards. I want to help them grow with confidence while continuing to create meaningful impact through YUVA.",
+                details: "<strong>Stepping into the Senior Council role is a proud moment for me and I know it comes with a bigger responsibility. One of my main goals is to guide the junior council and boards by being approachable and supportive in every situation. I’ve been in their place before so I know how important it is to have someone to lean on when you feel unsure or stuck. I want to be that support for them and help them grow not just in their roles but as individuals.</strong>\n\nI also want to build a strong connection between the senior and junior teams so that we work as one unit. It’s important that no one feels left out or unheard. I plan to have regular catch-ups or stay backs after the college time with the junior council to understand how they’re feeling and where they need help.\n\n<strong>At the same time, I’ll continue to plan and support events that create real impact like social hackathons, innovation pitches and workshops that combine tech with community welfare. I believe the strength of YUVA lies in how we build each other up and this tenure I want to make sure everyone grows together with purpose and confidence.</strong>",
                 icon: Target,
                 gradient: "from-indigo-500 via-indigo-600 to-indigo-500",
                 cardColor: "bg-indigo-100/70 border-indigo-300",
@@ -1601,8 +1603,8 @@ export default function Page() {
               },
               {
                 title: "Creative Event Ideas",
-                content: "Interactive road safety simulations using VR, community art projects, and gamified learning experiences.",
-                details: "I'm passionate about bringing innovative approaches to road safety education. Some of the creative event ideas I'd love to implement include immersive VR simulations that give participants a first-hand experience of road safety scenarios. Community art projects could transform public spaces while spreading important safety messages. I'm also excited about developing a youth ambassador program that empowers young leaders to champion road safety in their communities. These initiatives would be complemented by gamified learning experiences that make safety education engaging and memorable.",
+                content: "In the upcoming tenure, my vision is to create platforms where innovation meets purpose. Through a series of thoughtfully crafted events, I aim to bring together students, developers, entrepreneurs and changemakers to collaboratively address real-world problems.",
+                details: "<strong>1. Hack4Society - Hackathon on Social Problems</strong>\nA multi-college hackathon where students come together to solve real-world social challenges. Participants will work in teams to build impactful tech-driven solutions addressing issues like public safety, sustainability, mental health and more.\n\n<strong>Participants:</strong> Students from various colleges\n\n<strong>Outcome:</strong> Functional prototypes for real-world social problems\n<strong>Impact:</strong> Promotes empathy-led innovation and cross-campus collaboration\n\n<strong>2. Pitch to Product</strong>\nAn event where inventors, student innovators and prototype builders get the opportunity to pitch their ideas to a panel of Yi Entrepreneurs and investors. If the idea aligns with real-world needs, they receive mentorship and funding support to bring it to market.\n\n<strong>Participants:</strong> Innovators and startup-minded students\n\n<strong>Outcome:</strong> Real products launched into the market\n<strong>Impact:</strong> Fostering entrepreneurship for social good\n\n<strong>3. Code to Solution</strong> \nA one day coding sprint where developers tackle real-time business or societal problems posed by Yi Entrepreneurs. Teams will be challenged to create fast, seamless and scalable solutions.\n\n<strong>Participants:</strong> Developers and tech enthusiasts\n\n<strong>Outcome:</strong> Ready-to-test solutions for real-world company problems\n<strong>Impact:</strong> Strengthens industry-student collaboration and applied learning\n\n<strong>4. Tech for Safety – Live Technical Workshop</strong>\nA live technical session aimed at teaching students (from REC and other colleges) how to build AI-powered digital safety systems like SOS alerts, safety bots, or threat detection tools.\n\n<strong>Participants:</strong> Students from REC and other institutions\n\n<strong>Outcome:</strong> Practical learning on building safety tools using AI\n\n<strong>Impact:</strong> Skill development and promotion of tech for social safety\n\n<strong>5. Why Entrepreneurship Series?</strong>\nThis series will feature experienced startup founders who will share their personal stories, insights and practical advice on starting a business from scratch. The series aims to provide students with a deeper understanding of entrepreneurship and the resources available to support them on their journey.\n\n<strong>Outcomes:</strong> Students will become aware of available resources and support networks for startups, including government schemes and funding opportunities",
                 icon: Zap,
                 gradient: "from-pink-500 via-pink-600 to-pink-500",
                 cardColor: "bg-pink-100/70 border-pink-300",
@@ -1614,35 +1616,33 @@ export default function Page() {
               },
               {
                 title: "Preferred Council Role",
-                content: "As Senior Council member, I aim to bridge strategic planning and ground-level execution.",
-                details: "In a Senior Council role, I see myself as a bridge between strategic vision and practical implementation. My focus would be on member development, ensuring that every team member has the tools and support they need to succeed. I'm particularly interested in driving technological innovation within our organization to improve efficiency and impact. Sustainability would be at the heart of all our initiatives, with a focus on creating programs that deliver lasting value. My approach would be collaborative, inclusive, and always aligned with our core mission.",
+                content: "I would love to take up the role of Chair of Innovation, Chair of Entrepreneurship, or Chair of Road Safety.",
+                details: "As Chair of Innovation, I want to create space for new ideas, out-of-the-box thinking and projects that push boundaries. I believe innovation isn't just about tech it's about daring to do something differently and I want to empower that spark in others.\n\nAs Chair of Entrepreneurship, I aim to nurture the same confidence I found through YUVA in others helping students turn their passions into purpose, and ideas into impact. I want to build a culture of creators, doers and risk-takers.\n\nAs Chair of Road Safety, I feel a deep sense of responsibility toward creating awareness and driving change. Having been part of initiatives like Route Cause and Yi event. I've seen how impactful these efforts can be. I want to continue building that movement and make safety a culture.",
                 icon: Trophy,
                 gradient: "from-orange-500 via-orange-600 to-orange-500",
                 cardColor: "bg-orange-100/70 border-orange-300",
                 iconColor: "bg-orange-500",
                 statsColor: "bg-orange-50 text-orange-700 border-orange-200",
-                statsText: "Leadership",
+                statsText: "Passion",
                 emoji: "🏆",
-                images: [
-                  "/images/Abraham_Samuel_Img.jpg"
-                ]
-              },
-              {
-                title: "Complete YUVA Contribution List",
-                content: "MIS Team Leadership, Road Safety Co-Chair, and strategic planning across projects.",
-                details: "My journey with Yi-YUVA has been marked by diverse and meaningful contributions. As MIS Team Lead, I've overseen our digital transformation and data management strategies. My role as Road Safety Co-Chair allowed me to lead impactful community initiatives. I've been actively involved in major events like Road Revive 1.0 and Enlighten the Enroute 1.0. Beyond specific roles, I've contributed to process optimization, member mentoring, and strategic planning across multiple projects. Each experience has been a valuable learning opportunity and a chance to give back to the community.",
-                icon: MessageSquare,
-                gradient: "from-teal-500 via-teal-600 to-teal-500",
-                cardColor: "bg-teal-100/70 border-teal-300",
-                iconColor: "bg-teal-500",
-                statsColor: "bg-teal-50 text-teal-700 border-teal-200",
-                statsText: "Full Portfolio",
-                emoji: "📋",
-                images: [
-                  "/images/Abraham_Samuel_Img.jpg",
-                  "/images/Abraham_Samuel_img_2.jpg"
-                ]
-              },
+
+              }
+              // {
+              //   title: "Complete YUVA Contribution List",
+              //   content: "MIS Team Leadership, Road Safety Co-Chair, and strategic planning across projects.",
+              //   details: "My journey with Yi-YUVA has been marked by diverse and meaningful contributions. As MIS Team Lead, I've overseen our digital transformation and data management strategies. My role as Road Safety Co-Chair allowed me to lead impactful community initiatives. I've been actively involved in major events like Road Revive 1.0 and Enlighten the Enroute 1.0. Beyond specific roles, I've contributed to process optimization, member mentoring, and strategic planning across multiple projects. Each experience has been a valuable learning opportunity and a chance to give back to the community.",
+              //   icon: MessageSquare,
+              //   gradient: "from-teal-500 via-teal-600 to-teal-500",
+              //   cardColor: "bg-teal-100/70 border-teal-300",
+              //   iconColor: "bg-teal-500",
+              //   statsColor: "bg-teal-50 text-teal-700 border-teal-200",
+              //   statsText: "Full Portfolio",
+              //   emoji: "📋",
+              //   images: [
+              //     "/images/Abraham_Samuel_Img.jpg",
+              //     "/images/Abraham_Samuel_img_2.jpg"
+              //   ]
+              // },
             ].map((item, index) => (
               <motion.div
                 key={index}

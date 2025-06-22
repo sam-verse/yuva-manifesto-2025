@@ -181,29 +181,7 @@ export default function QuestionDetailsPopup({
 
               {/* Content */}
               <div className="overflow-y-auto max-h-[calc(95vh-180px)] sm:max-h-[calc(90vh-200px)] custom-scrollbar">
-                {/* Stats Section */}
-                <div className={`bg-white border-b ${colorSystem.content.border} p-4 sm:p-6 md:p-8`}>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                    {[
-                      { icon: Award, label: "Experience", value: "5+ Years" },
-                      { icon: Users, label: "Team Size", value: "10+ Members" },
-                      { icon: Star, label: "Success Rate", value: "98%" },
-                      { icon: Clock, label: "Duration", value: "2 Years" }
-                    ].map((stat, index) => (
-                      <motion.div 
-                        key={index}
-                        whileHover={{ scale: 1.02 }}
-                        className={`bg-gradient-to-br from-${bgColor}-500/10 to-${bgColor}-600/10 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border ${colorSystem.card.border} shadow-md hover:shadow-lg transition-all duration-300`}
-                      >
-                        <div className="flex items-center gap-2 mb-1.5">
-                          <stat.icon className={`w-4 h-4 sm:w-5 sm:h-5 text-${bgColor}-600`} />
-                          <span className={`text-sm font-medium text-${bgColor}-700`}>{stat.label}</span>
-                        </div>
-                        <p className={`text-base sm:text-lg font-bold text-${bgColor}-700`}>{stat.value}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
+              
 
                 {/* Overview Section */}
                 <div className={`bg-white border-b ${colorSystem.content.border}`}>
@@ -226,9 +204,9 @@ export default function QuestionDetailsPopup({
                         <span className={`w-1.5 h-1.5 rounded-full bg-${bgColor}-500`}></span>
                         Details
                       </h3>
-                      <p className={`text-${bgColor}-800 leading-relaxed text-sm sm:text-base`}>
-                        {details}
-                      </p>
+                      {details.split(/\n\n+/).map((para, idx) => (
+  <p key={idx} dangerouslySetInnerHTML={{ __html: para }} />
+))}
                     </div>
                   </div>
                 )}
