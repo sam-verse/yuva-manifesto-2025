@@ -598,7 +598,7 @@ export default function Page() {
               transition={{ delay: 0.2 }}
             >
               <Sparkles className="mr-2" size={16} />
-              Yi-YUVA-REC Senior Council Candidate
+              Manifesto
             </motion.div>
 
             <motion.h1
