@@ -752,14 +752,14 @@ export default function Page() {
                 {
                   title: "Who Am I?",
                   content:
-                    "I'm Abraham Samuel E — a purpose-driven individual who believes in leading with clarity, curiosity, and compassion. I find energy in solving problems, building connections, and turning ideas into outcomes. Leadership, to me, is not about holding a title — it's about creating value and inspiring action.",
+                    "I'm Abraham Samuel E, a purpose-driven individual who believes in leading with clarity, curiosity, and compassion. I find energy in solving problems, building connections, and turning ideas into outcomes. Leadership, to me, is not about holding a title it's about creating value and inspiring action.",
                   icon: Users,
                   gradient: "from-blue-500 to-blue-600",
                 },
                 {
-                  title: "Why Yi-YUVA?",
+                  title: "Why YUVA?",
                   content:
-                    "YUVA is more than an organization — it's a launchpad for growth, collaboration, and real-world impact. It's where I've learned the power of teamwork, strategic thinking, and value-based leadership. Every experience here has shaped not just what I do, but how I lead.",
+                    "More than an organization YUVA is a launchpad for growth, collaboration, and real-world impact. It's where I've learned the power of teamwork, strategic thinking, and value-based leadership. Every experience here has shaped not just what I do, but how I lead.",
                   icon: Heart,
                   gradient: "from-red-500 to-pink-600",
                 },
@@ -1507,7 +1507,7 @@ export default function Page() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
-                title: "Personal Summary as Junior Council Member",
+                title: "Personal Summary",
                 content: "YUVA is the place that believed in me before I believed in myself. It's where I stumbled, grew, led and found not just a team, but a family that changed my life.",
                 details: "I still remember how it all started with a message 'Hi Abraham, congrats on getting selected for the board recruitment of YI YUVA REC' from Thrisha Akka. I never thought that clicking on that would lead to one of the most meaningful journeys of my life. Being part of YUVA-REC helped me find parts of myself I didn't know existed.\n\nFrom being someone who used to shy away from conversations and stages, I became someone who now leads a team, organizes events, and shares what I know with confidence and care. What really changed me was the belief others had in me, especially when I moved from board member to council. I didn't think I was the best, but they saw something in me and gave me a chance. That moment gave me the courage to step up, open up, and grow, not just as a leader, but as a person.\n\nYUVA isn't just a club for me. It's a space that turned strangers into family, fears into strength, and small steps into big leaps. Every moment with YUVA is close to my heart, and I carry it with me in everything I do.",
                 icon: Users,
@@ -1573,7 +1573,7 @@ export default function Page() {
                 images: []
               },
               {
-                title: "Contributions Made",
+                title: "Contributions Made as a YUVA-RECian",
                 content: "Over the past year I’ve given my full effort to every YUVA event and initiative. From leading impactful projects to quietly helping behind the scenes every contribution has helped me grow and shaped the journey of others too.",
                 details: "Being part of YUVA gave me a chance to contribute across many areas. I led and co-organized events like Route Cause, a silent awareness rally that brought together people to stand against underage driving. I also been a Council lead in FinFluent, a personal finance workshop that made complex money matters feel simple and practical for over 100 students. It was special to see students walk out of that room with clarity and confidence.Another proud moment was receiving the Yi YUVA Champion Award during Yi Chennai Annual Day for building and leading the Digital Safety Audit, a project that reached over 600 people across India. That platform was close to my heart because it aimed at making the internet a safer space. Apart from these, I was constantly involved in volunteering and supporting our flagship events like Her Rhythm Within, Akshaya Patra, Chennai Got Talent and more. Also I'm handling the MIS team  and managing the forms, website and the datas.Every small and big moment added something meaningful. Whether it was writing a code or  designing a slide coordinating teams or guiding others I gave my best with heart and intention. YUVA became a space where I could express lead support and grow.",
                 icon: Star,
